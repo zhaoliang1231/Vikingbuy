@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>VikingBuy</title>
+    <link rel="stylesheet" href="../css/mui.min.css"/>
+    <link rel="stylesheet" href="../css/vk-ui.css"/>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/mui.min.js"></script>
+    <script type="text/javascript" src="../js/vk.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="vk-icon vk-icon-back mui-action-back nav-left"></a>
+		<h1 class="mui-title">收藏的商品</h1>
+		<a class="nav-right nav-ft js-edit">编辑</a>
+		<a class="nav-right nav-ft js-end mui-hidden">完成</a>
+	</header>
+	<div class="mui-bar mui-bar-tab foot-nav mui-clearfix js-foot-nav mui-hidden">
+		<div class="mui-checkbox mui-solid-check mui-pull-left" id="all-box">
+			<input type="checkbox" id="checkAll" name="qx" />
+			<label for="checkAll">全选</label>
+		</div>
+		<a href="javascript:;" class="footer-btn mui-pull-right mui-btn mui-btn-primary js-delete">删除</a>
+	</div>
+	<div class="mui-content">
+		<ul class="m-goods-lists goods-footprint-lists collect-lists mui-clearfix mt-10">
+			<script type="text/javascript" src="../js/mui.lazyload.js" ></script>
+			<script type="text/javascript" src="../js/mui.lazyload.img.js" ></script>
+			<script src="../js/template.js" ></script>
+			<script id="collectList" type="text/html">
+				{{each lists as list}}
+				<li class="list mui-checkbox" data-id="{{list.sku_id}}">
+					<div class="label-box mui-hidden">
+						<input data-id="{{list.sku_id}}" type="checkbox" id="collect1" class="text-main" />
+						<label class="collect-label" for="collect1" ></label>
+					</div>
+					<div class="item">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/loadlazy.gif" data-lazyload="{{list._sku.thumb}}" />
+							</div>
+						</div>
+						<div class="text mt-10">
+							<div class="mui-ellipsis mb-10 f-14">{{list.sku_name}}</div>
+							<p class="f-16 text-main">{{list.sku_price}} ₫ </p>
+							<div class="f-10 text-gray mt-10">销量<span class="sales">889</span>件<!--<span class="ml-20">456条评价</span>--></div>
+						</div>
+					</div>
+				</li>
+				{{/each}}
+			</script>
+		</ul>
+		<!--没有收藏的商品时-->
+		<div class="m-lists-none collect-lists-none mui-hidden">
+			<span class="icon">
+				<img src="../images/ico_collect.png">
+			</span>
+			<div class="text-gray f-12 mt-20">没有收藏的商品，快去逛逛吧~</div>
+			<a class="mui-btn mui-btn-main mt-30">返回首页</a>
+		</div>
+	</div>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+		
+		var collect = {
+			token: '',
+			getList: function() {
+				console.log(collect.token)
+				app.ajax({
+					data:{
+						method: 'api.module.member.favorite.lists',
+						token: collect.token
+					},
+					type: 'get',
+					success: function(data) {
+//						console.log(JSON.stringify(data));
+						if( data.code == 200 && data.result.count>0 ) {
+							var html = template('collectList',data.result);
+							document.querySelector('.collect-lists').innerHTML=html;
+							for( var i=0;i<data.result.lists.length;i++ ){
+								var spu_id=data.result.lists[i]._sku.spu_id;
+								var sku_id=data.result.lists[i].sku_id;
+//								collect.getCommentNum(spu_id);
+								collect.getSales(sku_id);
+							}
+						}
+					} 
+				});
+			},
+			/*获取评论数量*/
+			getCommentNum: function(id){
+				app.ajax({
+					data:{
+						method: 'api.module.comment.comment.count',
+						spu_id: id,
+					},
+					type: 'get',
+					success: function(data) {
+						if( data.code == 200 ) {
+						}
+					} 
+				});
+			},
+			/*销量*/
+			getSales: function(id){
+				app.ajax({
+					data:{
+						method: 'api.module.goods.sku.detail',
+						sku_id: id,
+					},
+					type: 'get',
+					success: function(data) {
+						console.log(JSON.stringify(data))
+						if( data.code == 200 && data.result ) {
+							var sales = data.result.sales;
+							var elem=document.querySelector('[data-id="'+id+'"] .sales');
+							elem.innerHTML = sales;
+						}
+					} 
+				});
+			},
+			/*销量*/
+			deleColl: function(id){
+				app.ajax({
+					data:{
+						method: 'api.module.member.favorite.delete',
+						token: collect.token,
+						sku_id: id
+					},
+					type: 'get',
+					success: function(data) {
+						console.log(JSON.stringify(data))
+						if( data.code == 200 ) {
+							mui.toast("删除成功");
+							document.querySelector('.collect-lists').innerHTML = '';
+							collect.getList();  
+							mui('.js-edit').removeClass('mui-hidden');
+							mui('.js-end').addClass('mui-hidden');
+							mui(".label-box").addClass('mui-hidden');
+							mui(".js-foot-nav").addClass('mui-hidden'); 
+							mui.fire(plus.webview.getWebviewById("member-index"), 'refreshMy', {});
+						}
+					} 
+				});
+			}
+		} 
+		
+		window.onload=function(){
+			mui.plusReady(function(){
+				showCurrentWebview('pop-in');
+				collect.token = plus.storage.getItem('token');
+				collect.getList(); 
+			})
+			
+			mui(document).on('change', '.collect-lists input', function(e) {
+				var ifall = true;
+				var noone = true;
+				var listBox = mui(".collect-lists input");
+				mui.each(listBox,function(){
+					if(this.checked == false) {
+						ifall = false
+					} else {
+						noone = false;
+					}
+				})
+				if(ifall) {
+					document.getElementById('checkAll').checked = true;
+				} else {
+				}
+				if(noone) {
+					document.getElementById('checkAll').checked = false;
+				}
+			})
+			/*全选*/
+			document.getElementById('checkAll').addEventListener('change', function(e) {
+				var listBox = mui(".collect-lists input");
+				var _this=this;
+				if(!this.checked) {
+					mui.each(listBox, function() {
+						this.checked = false;
+						if(this.checked) this.checked = false;
+					})
+				} else {
+					mui.each(listBox, function() {
+						this.checked = true;
+						if(!this.checked) this.checked = true;
+					})
+				}
+			})
+			
+			/*删除*/
+			mui(document).on('tap','.js-delete',function(){
+				mui.confirm('确定删除当前商品吗？', ' ', ['取消', '确定'], function(e) {
+					if(e.index == 1) {
+						var ids = document.querySelectorAll(".collect-lists input");
+						var id = '';
+						var obj = {};
+						for(i in ids) {
+							if(ids[i].checked) {
+								id = ids[i].getAttribute('data-id');
+								collect.deleColl(id);
+							}
+
+						};
+
+					} else {
+
+					}
+				},'div')
+			})
+			
+			mui(document).on('tap','.js-edit',function(){
+				mui('.js-edit').addClass('mui-hidden');
+				mui('.js-end').removeClass('mui-hidden');
+				mui(".label-box").removeClass('mui-hidden');
+				mui(".js-foot-nav").removeClass('mui-hidden');
+			});
+			
+			mui(document).on('tap','.js-end',function(){
+				mui('.js-edit').removeClass('mui-hidden');
+				mui('.js-end').addClass('mui-hidden');
+				mui(".label-box").addClass('mui-hidden');
+				mui(".js-foot-nav").addClass('mui-hidden');
+			});
+		}; 
+    </script>
+</body>
+</html>

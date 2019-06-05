@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>VikingBuy</title>
+    <link rel="stylesheet" href="../css/mui.min.css"/>
+    <link rel="stylesheet" href="../css/vk-ui.css"/>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="text/javascript" src="../js/mui.min.js"></script>
+    <script type="text/javascript" src="../js/public.js"></script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="vk-icon vk-icon-back mui-action-back nav-left"></a>
+		<h1 class="mui-title">消息设置</h1>
+	</header>
+	<div class="mui-content">
+		<ul class="mui-table-view mt-10">
+			<li class="mui-table-view-cell">
+				<a>
+					<span>新消息提醒</span>
+					<div class="mui-switch mui-switch-mini bg-red mui-active mui-pull-right">
+						<div class="mui-switch-handle"></div>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<div class="pl-15 pt-10 pb-10 lh-20 text-hoar">开启后可接受新消息提醒</div>
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell">
+				<a>
+					<span>夜间防骚扰模式</span>
+					<div class="mui-switch mui-switch-mini bg-red mui-pull-right">
+						<div class="mui-switch-handle"></div>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<div class="pl-15 pt-10 pb-10 lh-20 text-hoar">开启后23:00~08:00之间将不接收任何提醒</div>
+	</div>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+		window.onload=function(){
+			
+			mui.plusReady(function(){
+			
+			showCurrentWebview('pop-in');
+				
+			})
+		}
+    </script>
+</body>
+</html>

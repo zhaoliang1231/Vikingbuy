@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>VikingBuy</title>
+    <link rel="stylesheet" href="../css/mui.min.css"/>
+    <link rel="stylesheet" href="../css/vk-ui.css"/>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/mui.min.js"></script>
+    <script type="text/javascript" src="../js/vk.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="nav-left vk-icon vk-icon-back mui-action-back"></a>
+		<a class="nav-right nav-ft delete">删除</a>
+		<!--购物车无商品时-->
+		<!--<a class="nav-right nav-ft mui-hidden">删除</a>-->
+		<h1 class="mui-title">购物车</h1>
+	</header>
+	<nav class="mui-bar mui-bar-tab foot-nav">
+		<div href="../index.html" class="mui-tab-item">
+			<span class="vk-icon-home"></span>
+			<small>首页</small>
+		</div>
+		<div href="../goods/classify.html" class="mui-tab-item">
+			<span class="vk-icon-classify"></span>
+			<small>分类</small>
+		</div>
+		<div id="shopHelp" class="mui-tab-item">
+			<div class="main-item"><span class="vk-icon-mall"></span></div>
+			<small>店铺</small>
+		</div>
+		<div class="mui-tab-item current">
+			<span class="vk-icon-cart-s"></span>
+			<small>购物车</small>
+		</div>
+		<div href="../member/index.html" class="mui-tab-item">
+			<span class="vk-icon-my"></span>
+			<small>我的</small>
+		</div>
+	</nav>
+	<!-- 购物车底部结算信息 -->
+	<div class="mui-bar mui-bar-tab foot-nav m-comment-footer m-cart-footer mui-clearfix mui-hidden">
+		<div class="mui-pull-left pt-10">
+			<div class="mui-checkbox mui-solid-check mui-pull-left">
+				<input id="checkAll" checked="checked" type="checkbox" />
+			</div>
+			<label class="ml-40" for="commt">
+				<span>合计: <span class="text-main"><span id="priceTotal">0.00</span> ₫</span></span>
+				<div class="f-12 text-hoar mt-5">不含运费</div>
+			</label>
+		</div>
+		<a href="javascript:;" id="settlement" class="footer-btn mui-pull-right mui-btn mui-btn-primary">结算(<span id="countTotal">0</span>)</a>
+	</div>
+	<!-- 内容区域 -->
+	<div class="mui-content m-cart"></div>
+	
+	<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="../js/template.js"></script>
+	<script type="text/javascript" src="../js/mui.lazyload.js" ></script>
+	<script type="text/javascript" src="../js/mui.lazyload.img.js" ></script>
+	<script type="text/html" id="cartContent">
+		{{each skus as value}}
+		<ul class="mui-table-view mt-10 js-cart-lists">
+			<li class="mui-table-view-cell">
+				<label class="mui-checkbox mui-solid-check">
+					<input class="js-check-shop" checked="checked" type="checkbox" />
+				</label>
+				<span class="ml-30">洋货码头官方旗舰店</span>
+			</li>
+			<li class="mui-table-view-cell cart-good-list" data-id="{{value.sku_id}}">
+				<label class="mui-checkbox mui-solid-check"><input class="js-check-item" checked="checked" type="checkbox" /></label>
+				<div class="g-flex pl-30" data-href="../goods/detail.html" data-value="{{value.sku_id}}">
+					<div class="vertical-box"><img src="../images/loadlazy.gif" data-lazyload="{{value._sku_.thumb}}" /></div>
+					<div class="lh-18 ml-10 flex-full">
+						<div class="mui-ellipsis-2">{{value._sku_.name}}</div>
+						<div class="mui-ellipsis f-12 text-hoar mt-5">{{value._sku_.spec_show}}</div>
+						<div class="mt-5 g-flex mui-clearfix">
+							<span class="flex-full mui-ellipsis text-main"><span class="price">{{value._sku_.shop_price}}</span> ₫</span>
+							<div class="mui-numbox mui-pull-right" data-numbox-min="1">
+								<button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+								<input class="mui-numbox-input" data-num="{{value._sku_.number}}" type="number" value="{{value.number}}" />
+								<button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+		{{/each}}
+	</script>
+	<!--购物车无商品时-->
+	<script type="text/html" id="uncart">
+		<div class="m-lists-none cart-lists-none">
+			<span class="icon">
+				<img src="../images/ico_cart.png">
+			</span>
+			<div class="text-gray f-12 mt-15">您的购物车还是空的，快去逛逛吧~</div>
+				<div class="mui-h6 text-dark contain-bd-tt mt-40">
+				<div class="bd-bg"></div>
+				<div class="text">猜你喜欢</div>
+			</div>
+		</div>
+		<ul class="m-goods-lists goods-footprint-lists collect-lists mui-clearfix mt-20">
+			{{each lists as value}}
+			<li class="list">
+				<div class="item" data-href="../goods/detail.html" data-id="{{value.sku_id}}" data-value="{{value.sku_id}}">
+					<div class="square-box">
+						<div class="vertical-box"><img src="../images/loadlazy.gif" data-lazyload="{{value.thumb}}" /></div>
+					</div>
+					<div class="text mt-10">
+						<div class="mui-ellipsis mb-10 f-14">{{value.sku_name}}&nbsp;</div>
+						<p class="f-16 text-main">{{value.shop_price}} ₫ </p>
+						<div class="f-10 text-gray mt-10">销量{{value.sales_num}}件<span class="ml-20">{{value.comment_num}}条评价</span></div>
+					</div>
+				</div>
+			</li>
+			{{/each}}
+		</ul>
+	</script>
+	<script>
+		window.onload = function(){
+			var cart = {
+				token: null,
+				result: null,
+				interval: undefined,
+				countTotal: document.getElementById("countTotal"),
+				priceTotal: document.getElementById("priceTotal"),
+				footerElem: document.querySelector(".m-cart-footer"),
+				checkGoods: []
+			}
+			
+			//获取选中的商品
+			function getCheckGoods(){
+				var checks = [];
+				$.each(document.querySelectorAll(".js-check-item"), function() {
+					if(this.checked){
+						checks.push($(this).parents("li").data("id"));
+					}
+				});
+				return checks;
+			}
+			
+			//计算&设置底部结算信息
+			function setSettlementInfo(){
+				var items = $(".js-check-item:checked");
+				var prices = 0.00;
+				//设置选中的商品数量
+				cart.countTotal.innerHTML = items.length;
+				//计算价格
+				$.each(items, function() {
+					if(this.checked){
+						var $parents = $(this).parents("li");
+						prices += $parents.find(".price").html() * $parents.find(".mui-numbox-input").val();
+					}
+				});
+				//设置选中商品总价
+				cart.priceTotal.innerHTML = prices.toFixed(2);
+			}
+			
+			//请求推荐商品
+			function getRecommendGoods(){
+				//如果已经是显示推荐商品状态则不再再次请求
+				if(document.querySelectorAll(".collect-lists").length > 0) return false;
+				app.ajax({
+					data: {
+						method: 'api.module.goods.sku.lists',
+						token: cart.token,
+						catid: 0,
+						status_ext: 4,
+						limit: 6
+					},
+					async: false,
+					success: function(ret){
+						document.querySelector(".mui-content").innerHTML = template("uncart", ret.result);
+					}
+				})
+			}
+			
+			//请求购物车列表
+			function getCartLists(){
+				plus.nativeUI.showWaiting('内容加载中...');
+				app.ajax({
+					data: {
+						method: 'api.module.order.cart.lists',
+						token: cart.token
+					},
+					async: false,
+					success: function(data) {
+						if(data.code == 200 && data.result.skus) {
+							document.querySelector(".mui-content").innerHTML = template("cartContent", data.result);
+							//实例化商品购买数量加减功能
+							mui('.mui-numbox').numbox();
+							//显示底部购物车结算信息
+							cart.footerElem.classList.remove("mui-hidden");
+							setSettlementInfo();
+						}else{
+							//购物车为空时加载推荐的商品
+							getRecommendGoods();
+						}
+					}
+				})
+				plus.nativeUI.closeWaiting();
+				//实例化懒加载
+				mui(document).imageLazyload();
+			}
+			
+			mui.plusReady(function(){
+				
+				var ws = plus.webview.currentWebview();
+				plus.navigator.setStatusBarBackground("#ffffff");
+				
+				mui.init({
+					beforeback: function(){
+						plus.webview.currentWebview().hide();
+						return false;
+					}
+				})
+				
+				cart.token = plus.storage.getItem("token");
+	
+				//加载购物车内容
+				getCartLists();
+				
+				ws.addEventListener("show", function(){
+					var updateState = plus.storage.getItem("cartUpdateState");
+					if(updateState && updateState == 'true'){
+						getCartLists();
+						plus.storage.setItem("cartUpdateState", "false");
+					}
+				})
+				
+			})
+			
+			function deleteGoods(d, i){
+				app.ajax({
+					data: {
+						method: 'api.module.order.cart.delpro',
+						token: cart.token,
+						sku_id: d[i]
+					},
+					async: false,
+					success: function(data) {
+						if(data.code == 200 && data.result) {
+							var $li = $(".cart-good-list[data-id="+ d[i] +"]");
+							var $parent = $li.parent("ul");
+							//清除选中的商品
+							$li.remove();
+							//清除没有商品的店铺
+							if($parent.find(".cart-good-list").length <= 0){
+								$parent.remove();
+							}
+							//递归请求删除商品
+							i++;
+							if(i < d.length){
+								deleteGoods(d, i);
+							}else{
+								setSettlementInfo();
+							}
+						}else{
+							mui.toast("删除失败~");
+						}
+					}
+				})
+			}
+			
+			mui(document).on('tap','.delete',function(){
+				mui.confirm('确定删除当前选中的商品吗？',' ',['取消','确定'],function(e){
+					if(e.index == 1){
+						//请求删除商品
+						deleteGoods(getCheckGoods(), 0);
+						//计算购物车价格
+						setSettlementInfo();
+						//购物车没有商品后隐藏底部结算信息并加载推荐商品
+						if(document.querySelectorAll(".js-cart-lists").length <= 0){
+							getRecommendGoods();
+							cart.footerElem.classList.add("mui-hidden");
+						}
+					}
+				},'div');
+			})
+			
+			//设置商品数量
+			mui(document).on("change", ".mui-numbox-input", function(){
+				var that = this;
+				var $parents = $(this).parents("li");
+				var $id = $parents.data("id");
+				if(cart.interval){
+					window.clearTimeout(cart.interval);
+				}
+				cart.interval = setTimeout(function(){
+					app.ajax({
+			            data : {
+			                method: 'api.module.order.cart.set_nums',
+			                sku_id: $id,
+			                nums: that.value,
+			             	token: cart.token
+			            },
+			            type: 'post',
+			            async: false,
+			            success: function(data) {
+			            	if(data.code == 200 && data.result){
+			            		that.setAttribute("data-num", that.value);
+			            		setSettlementInfo();
+			            	}else{
+			            		that.value = that.getAttribute("data-num");
+			            	}
+			            },
+			            error: function(){
+			            	that.value = that.getAttribute("data-num");
+			            }
+			      	});
+				}, 500)
+			})
+			
+			//全选
+			mui(document).on('change', "#checkAll", function(){
+				if(!this.checked){
+					$("input[type=checkbox]").prop("checked", false);
+				}else{
+					$("input[type=checkbox]").prop("checked", true);
+				}
+				setSettlementInfo();
+			})
+			//选中店铺
+			mui(document).on('change', '.js-check-shop', function(){
+				var $items = $(this).parents("ul").find(".js-check-item");
+				if(!this.checked){
+					$items.prop("checked", false);
+				}else{
+					$items.prop("checked", true);
+				}
+				setSettlementInfo();
+			})
+			//单个选中
+			mui(document).on('change', '.js-check-item', function(){
+				var $parents = $(this).parents("ul");
+				var $shop = $parents.find(".js-check-shop");
+				if($parents.find(".js-check-item:checked").length > 0){
+					$shop.prop("checked", true);
+				}else{
+					$shop.prop("checked", false);
+				}
+				setSettlementInfo();
+			})
+			
+			//去结算
+			mui(document).on('tap', '#settlement', function(){
+				setSettlementInfo();
+				//校验登录
+				if(!app.checkLogin()) return false;
+				//校验选中的商品
+				var checks = getCheckGoods();
+				if(checks.length <= 0){
+					mui.toast("请先选择您要结算的商品~");
+					return false;
+				}
+				app.openWindow({
+					url: 'create.html',
+					id: 'order-create',
+					extras:{
+				    	value: checks.join(",")
+				    }
+				});
+			})
+			
+			mui(document).on("tap", ".mui-numbox", function(e){
+				e.stopPropagation();
+			})
+			mui(document).on("tap", ".mui-numbox input", function(e){
+				e.stopPropagation();
+			})
+		}
+	</script>
+	<script type="text/javascript" src="../js/nav.js" ></script>
+</body>
+</html>

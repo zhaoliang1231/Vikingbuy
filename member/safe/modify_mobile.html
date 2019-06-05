@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>VikingBuy</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/vk-ui.css"/>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <script type="text/javascript" src="../../js/public.js"></script>
+    <script type="text/javascript" src="../../js/config.js"></script>
+    <script type="text/javascript" src="../../js/mui.min.js"></script>
+    <script type="text/javascript" src="../../js/vk.js"></script>
+    <script type="text/javascript" src="../../js/app.js"></script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="vk-icon vk-icon-back mui-action-back nav-left"></a>
+		<!--修改手机号第一步title-->
+		<h1 class="mui-title">核实身份</h1>
+		<!--修改手机号第二步title-->
+		<!--<h1 class="mui-title">更换手机号</h1>-->
+		<!--修改手机号第三步title-->
+		<!--<h1 class="mui-title">验证新手机号</h1>-->
+	</header>
+	<div class="mui-content">
+		<!--修改手机号第一步-->
+		<div class="step-one">
+			<div class="pl-15 pt-10 pb-10 lh-20 text-gray">当前手机号码为182*****333</div>
+			<ul class="mui-table-view get-code">
+				<li class="mui-table-view-cell">
+					<span>验证码</span>
+					<input class="f-12 ml-10" type="text" placeholder="请输入验证码" />
+					<span class="mui-btn mui-btn-primary btn-code">获取验证码</span>
+				</li>
+			</ul>
+			<div class="mt-30 pl-15 pr-15">
+				<a class="mui-btn mui-btn-primary bd-sml">下一步</a>
+			</div>
+		</div>
+		<!--修改手机号第二步-->
+		<div class="step-two mui-hidden">
+			<div class="pl-15 pt-10 pb-10 lh-20 text-gray">我们将发送验证码到您的手机</div>
+			<ul class="mui-table-view get-code">
+				<li class="mui-table-view-cell">
+					<span>新手机号</span>
+					<input class="f-12 ml-20" type="mobile" placeholder="请输入手机号码" />
+				</li>
+			</ul>
+		</div>
+		<!--修改手机号第三步-->
+		<div class="step-three mui-hidden">
+			<div class="pl-15 pt-10 pb-10 lh-20 text-gray">请输入182*****333收到的短信验证码</div>
+			<ul class="mui-table-view get-code">
+				<li class="mui-table-view-cell">
+					<span>验证码</span>
+					<input class="f-12 ml-10" type="text" placeholder="请输入验证码" />
+					<span class="mui-btn mui-btn-primary btn-code">获取验证码</span>
+				</li>
+			</ul>
+			<div class="mt-30 pl-15 pr-15">
+				<a class="mui-btn mui-btn-primary bd-sml">下一步</a>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" charset="utf-8">
+  	mui.init({
+		swipeBack:true //启用右滑关闭功能
+	});
+	window.onload = function() {
+	
+		mui.plusReady(function(){
+		
+			showCurrentWebview('pop-in');
+			
+			var ws = plus.webview.currentWebview();
+			
+			
+		})
+	}
+</script>
+</html>

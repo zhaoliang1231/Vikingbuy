@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>VikingBuy</title>
+    <link rel="stylesheet" href="../css/mui.min.css"/>
+    <link rel="stylesheet" href="../css/vk-ui.css"/>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav m-search m-classify-search">
+		<div class="mui-input-row">
+	        <input type="search" class="mui-input-clear" placeholder="输入关键字进行搜索" />
+	        <span class="vk-icon vk-icon-search"></span>
+	    </div>
+		<a class="opt-item ml-10">
+			<div class="vk-icon-scan"></div>
+			<div class="f-8">扫一扫</div>
+		</a>
+		<a class="opt-item ml-10">
+			<div class="vk-icon-message"></div>
+			<div class="f-8">消息</div>
+			<i class="badge-new"></i>
+		</a>
+	</header>
+	<nav class="mui-bar mui-bar-tab foot-nav">
+		<div href="../index.html" class="mui-tab-item">
+			<span class="vk-icon-home"></span>
+			<small>首页</small>
+		</div>
+		<div class="mui-tab-item current">
+			<span class="vk-icon-classify-s"></span>
+			<small>分类</small>
+		</div>
+		<div id="shopHelp" class="mui-tab-item">
+			<div class="main-item"><span class="vk-icon vk-icon-mall"></span></div>
+			<small>店铺</small>
+		</div>
+		<div href="../order/cart.html" class="mui-tab-item">
+			<span class="vk-icon-cart"></span>
+			<small>购物车</small>
+		</div>
+		<div href="../member/index.html" class="mui-tab-item">
+			<span class="vk-icon-my"></span>
+			<small>我的</small>
+		</div>
+	</nav>
+	<div class="mui-content mui-fullscreen classify g-flex">
+		<div id="segmentedControls" class="classify-items mui-segmented-control mui-segmented-control-vertical">
+			<a class="mui-control-item mui-active" data-index="0" href="box0">热销分类</a>
+			<a class="mui-control-item" data-index="1" href="box1">母婴用品</a>
+			<a class="mui-control-item" data-index="2" href="box2">化妆护理</a>
+			<a class="mui-control-item" data-index="3" href="box3">生活家居</a>
+			<a class="mui-control-item" data-index="4" href="box4">轻奢名品</a>
+			<a class="mui-control-item" data-index="5" href="box5">精品文具</a>
+		</div>
+		<div id="segmentedControlContents" class="classify-contents flex-full">
+			<div class="m-fullwide-ad"><img src="../images/test/classify_banner.jpg"></div>
+			<div id="box0" class="mui-control-content">
+				<div class="title">热门分类</div>
+				<ul class="goods-base-lists  mui-text-center mui-clearfix">
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+				</ul>
+			</div>
+			<div id="box1" class="mui-control-content">
+				<div class="title">母婴用品</div>
+				<ul class="goods-base-lists  mui-text-center mui-clearfix">
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+				</ul>
+			</div>
+			<div id="box2" class="mui-control-content">
+				<div class="title">化妆护理</div>
+				<ul class="goods-base-lists  mui-text-center mui-clearfix">
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+				</ul>
+			</div>
+			<div id="box3" class="mui-control-content">
+				<div class="title">生活家居</div>
+				<ul class="goods-base-lists  mui-text-center mui-clearfix">
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+				</ul>
+			</div>
+			<div id="box4" class="mui-control-content">
+				<div class="title">轻奢名品</div>
+				<ul class="goods-base-lists  mui-text-center mui-clearfix">
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+				</ul>
+			</div>
+			<div id="box5" class="mui-control-content">
+				<div class="title">精品文具</div>
+				<ul class="goods-base-lists  mui-text-center mui-clearfix">
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+					<li class="list">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/goods.png" />
+							</div>
+						</div>
+						<div class="goods-title">唇膏</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+    <script type="text/javascript" src="../js/mui.min.js"></script>
+    <script type="text/javascript" src="../js/vk.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+	<script type="text/javascript" src="../js/nav.js"></script>
+    <script>
+    	//滚动效果
+		window.onload = function(){
+			
+			app.ajax({
+				data: {
+					method: 'api.module.mutil.store.store_category'
+				},
+				success: function(data){
+					console.log(JSON.stringify(data))
+				},
+				error: function(err){
+					console.log(JSON.stringify(err))
+				}
+			})
+			
+			
+			
+			
+			var controlsElem = document.getElementById("segmentedControls");
+			var contentsElem = document.getElementById("segmentedControlContents");
+			
+			var controlListElem = controlsElem.querySelectorAll('.mui-control-item');
+			var contentListElem = contentsElem.querySelectorAll('.mui-control-content');
+			
+			var controlWrapperElem = controlsElem.parentNode;
+			var controlWrapperHeight = controlWrapperElem.offsetHeight;
+			
+			var controlMaxScroll = controlWrapperElem.scrollHeight - controlWrapperHeight;//左侧类别最大可滚动高度
+			var maxScroll = contentsElem.scrollHeight - contentsElem.offsetHeight;//右侧内容最大可滚动高度
+			
+			var controlHeight = controlListElem[0].offsetHeight;//左侧类别每一项的高度
+			var controlTops = []; //存储control的scrollTop值
+			var contentTops = [0]; //存储content的scrollTop值
+			
+			var length = contentListElem.length;
+			
+			for (var i = 0; i < length; i++) {
+				controlTops.push(controlListElem[i].offsetTop + controlHeight);
+			}
+			for (var i = 1; i < length; i++) {
+				var offsetTop = contentListElem[i].offsetTop;
+				if (offsetTop + 100 >= maxScroll) {
+					var height = Math.max(offsetTop + 100 - maxScroll, 100);
+					var totalHeight = 0;
+					var heights = [];
+					for (var j = i; j < length; j++) {
+						var offsetHeight = contentListElem[j].offsetHeight;
+						totalHeight += offsetHeight;
+						heights.push(totalHeight);
+					}
+					for (var m = 0, len = heights.length; m < len; m++) {
+						contentTops.push(parseInt(maxScroll - (height - heights[m] / totalHeight * height)));
+					}
+					break;
+				} else {
+					contentTops.push(parseInt(offsetTop));
+				}
+			}
+			
+			contentsElem.addEventListener('scroll', function() {
+				var scrollTop = contentsElem.scrollTop;
+				for (var i = 0; i < length; i++) {
+					var offsetTop = contentTops[i];
+					var offset = Math.abs(offsetTop - scrollTop);
+//						console.log("i:"+i+",scrollTop:"+scrollTop+",offsetTop:"+offsetTop+",offset:"+offset);
+					if (scrollTop < offsetTop) {
+						if (scrollTop >= maxScroll) {
+							onScroll(length - 1);
+						} else {
+							onScroll(i - 1);
+						}
+						break;
+					} else if (offset < 20) {
+						onScroll(i);
+						break;
+					}else if(scrollTop >= maxScroll){
+						onScroll(length - 1);
+						break;
+					}
+				}
+			});
+			
+			var lastIndex = 0;
+			//监听content滚动
+			var onScroll = function(index) {
+				if (lastIndex !== index) {
+					lastIndex = index;
+					var lastActiveElem = controlsElem.querySelector('.mui-active');
+					lastActiveElem && (lastActiveElem.classList.remove('mui-active'));
+					var currentElem = controlsElem.querySelector('.mui-control-item:nth-child(' + (index + 1) + ')');
+					currentElem.classList.add('mui-active');
+					//简单处理左侧分类滚动，要么滚动到底，要么滚动到顶
+					var controlScrollTop = controlWrapperElem.scrollTop;
+					if (controlScrollTop + controlWrapperHeight < controlTops[index]) {
+						controlWrapperElem.scrollTop = controlMaxScroll;
+					} else if (controlScrollTop > controlTops[index] - controlHeight) {
+						controlWrapperElem.scrollTop = 0;
+					}
+				}
+			};
+			
+			//滚动到指定content
+			var scrollTo = function(index) {
+				contentsElem.scrollTop = contentTops[index];
+			};
+			
+			mui(controlsElem).on('tap', '.mui-control-item', function(e) {
+				scrollTo(this.getAttribute('data-index'));
+				return false;
+			});
+			
+			mui.plusReady(function(){
+				
+				plus.navigator.setStatusBarBackground("#ffffff");
+				
+				mui.init({
+					beforeback: function(){
+						plus.webview.currentWebview().hide();
+						return false;
+					}
+				})
+			})
+			
+		}
+    </script>
+</body>
+</html>

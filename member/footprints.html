@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>VikingBuy</title>
+    <link rel="stylesheet" href="../css/mui.min.css"/>
+    <link rel="stylesheet" href="../css/vk-ui.css"/>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/mui.min.js"></script>
+    <script type="text/javascript" src="../js/vk.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="vk-icon vk-icon-back mui-action-back nav-left"></a>
+		<h1 class="mui-title">我的足迹</h1>
+		<a class="nav-right nav-ft clear">清空</a>
+	</header>
+	<div class="mui-content">
+		<ul class="m-goods-lists goods-footprint-lists mui-clearfix mt-10">
+			<script src="../js/template.js" ></script>
+			<script id="footprintList" type="text/html">
+				<li class="list">
+					<div class="item">
+						<div class="square-box">
+							<div class="vertical-box">
+								<img src="../images/test/img.jpg" />
+							</div>
+						</div>
+						<div class="text mt-10">
+							<div class="mui-ellipsis mb-10 f-14">爱度钻石Doido PT950爱度钻石Doido PT950</div>
+							<p class="f-16 text-main">8.888.888.888 ₫ </p>
+							<div class="f-10 text-gray mt-10">销量889件<span class="ml-20">456条评价</span></div>
+						</div>
+					</div>
+				</li>
+			</script>
+			<li class="list">
+				<div class="item">
+					<div class="square-box">
+						<div class="vertical-box">
+							<img src="../images/test/goods.png" />
+						</div>
+					</div>
+					<div class="text mt-10">
+						<div class="mui-ellipsis mb-10 f-14">爱度钻石Doido PT950爱度钻石Doido PT950</div>
+						<p class="f-16 text-main">8.888.888.888 ₫ </p>
+						<div class="f-10 text-gray mt-10">销量889件<span class="ml-20">456条评价</span></div>
+					</div>
+				</div>
+			</li>
+			<li class="list">
+				<div class="item">
+					<div class="square-box">
+						<div class="vertical-box">
+							<img src="../images/test/goods_1.png" />
+						</div>
+					</div>
+					<div class="text mt-10">
+						<div class="mui-ellipsis mb-10 f-14">爱度钻石Doido PT950爱度钻石Doido PT950</div>
+						<p class="f-16 text-main">8.888.888.888 ₫ </p>
+						<div class="f-10 text-gray mt-10">销量889件<span class="ml-20">456条评价</span></div>
+					</div>
+				</div>
+			</li>
+			<li class="list">
+				<div class="item">
+					<div class="square-box">
+						<div class="vertical-box">
+							<img src="../images/test/goods_2.png" />
+						</div>
+					</div>
+					<div class="text mt-10">
+						<div class="mui-ellipsis mb-10 f-14">爱度钻石Doido PT950爱度钻石Doido PT950</div>
+						<p class="f-16 text-main">8.888.888.888 ₫ </p>
+						<div class="f-10 text-gray mt-10">销量889件<span class="ml-20">456条评价</span></div>
+					</div>
+				</div>
+			</li>
+			<li class="list">
+				<div class="item">
+					<div class="square-box">
+						<div class="vertical-box">
+							<img src="../images/test/goods_3.png" />
+						</div>
+					</div>
+					<div class="text mt-10">
+						<div class="mui-ellipsis mb-10 f-14">爱度钻石Doido PT950爱度钻石Doido PT950</div>
+						<p class="f-16 text-main">8.888.888.888 ₫ </p>
+						<div class="f-10 text-gray mt-10">销量889件<span class="ml-20">456条评价</span></div>
+					</div>
+				</div>
+			</li>
+			<li class="list">
+				<div class="item">
+					<div class="square-box">
+						<div class="vertical-box">
+							<img src="../images/test/goods_1.png" />
+						</div>
+					</div>
+					<div class="text mt-10">
+						<div class="mui-ellipsis mb-10 f-14">爱度钻石Doido PT950爱度钻石Doido PT950</div>
+						<p class="f-16 text-main">8.888.888.888 ₫ </p>
+						<div class="f-10 text-gray mt-10">销量889件<span class="ml-20">456条评价</span></div>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<!--没有商品时-->
+		<div class="m-lists-none collect-lists-none mui-hidden">
+			<span class="icon">
+				<img src="../images/ico_collect.png">
+			</span>
+			<div class="text-gray f-12 mt-20">没有浏览的商品，快去逛逛吧~</div>
+			<a class="mui-btn mui-btn-main mt-30" data-href="../index.html" data-vid="index" >返回首页</a>
+		</div>
+	</div>
+	<script type="text/javascript" src="../js/mui.lazyload.js"></script>
+	<script type="text/javascript" src="../js/mui.lazyload.img.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+		mui(document).on('tap','.clear',function(){
+			mui.confirm('', '确定清空我的足迹吗？', ['取消','确定'], function(){
+				document.querySelector('.goods-footprint-lists').innerHTML='';
+				mui(".collect-lists-none").removeClass('mui-hidden');
+			}, 'div')
+		})
+		
+		var footPrint = {
+			token: '',
+			getList: function(){
+				app.ajax({
+					data:{
+						method: 'api.module.member.history.lists',
+						token: footPrint.token
+					},
+					type: 'get',
+					success: function(data) {
+//						console.log(JSON.stringify(data));
+						if( data.code == 200 && data.result ) {
+							
+						}
+					}
+				})
+			}
+			
+		}
+		
+		window.onload=function(){
+		
+			mui.plusReady(function(){
+				
+				showCurrentWebview('pop-in');
+				
+				footPrint.token = plus.storage.getItem('token');
+				
+				footPrint.getList(); 
+				
+			})
+		}
+    </script>
+</body>
+</html>

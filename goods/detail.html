@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>VikingBuy</title>
+    <link rel="stylesheet" href="../css/mui.min.css"/>
+    <link rel="stylesheet" href="../css/vk-ui.css"/>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/mui.min.js"></script>
+    <script type="text/javascript" src="../js/vk.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <style>
+		#detailContent { position: relative; height: 100%; z-index: 1; }
+		#detail-nav { display: none; }
+		.hd-scroller { width: 100%; }
+		.hd-scroller:last-child { padding-bottom: 1rem; }
+	</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav goods-detail-nav">
+		<a class="nav-left mui-action-back vk-icon vk-icon-back"></a>
+		<div class="mui-title">图文详情</div>
+		<a class="nav-right vk-icon vk-icon-share"></a>
+	</header>
+	<div class="mui-bar mui-bar-tab foot-nav bottom-goods-detail-nav mui-row">
+		<div class="mui-col-xs-6 pl-10 pr-10">
+			<div class="mui-tab-item">
+				<span class="vk-icon-customer"></span>
+				<small>客服</small>
+			</div>
+			<div class="mui-tab-item" id="collect">
+				<span class="vk-icon-collect"></span>
+				<small>关注</small>
+			</div>
+			<div class="mui-tab-item" data-href="../order/cart.html" data-vid="order-cart">
+				<span class="tag-box">
+					<span class="vk-icon-cart"></span>
+					
+					<span class="tag" id="carNum">0</span>
+				</span>
+				<small>购物车</small>
+			</div>
+		</div>
+		<div class="mui-col-xs-6 u-btn bg-main text-white add-cart">加入购物车</div>
+	</div>
+	<div id="detail-nav" class="m-filter-bar filter-border mui-segmented-control">
+	    <a href="#detail" class="mui-control-item mui-active"><span class="f-16">商品详情</span></a>
+	    <a href="#evaluate" class="mui-control-item"><span class="f-16">商品评价</span></a>
+	</div>
+			
+	<div class="mui-content m-goods-detail">
+		<div id="detailContent">
+			<div id="touchTop" class="hd-scroller">
+				
+				<!-- 商品焦点图 -->
+				<div id="slider">
+					<div class="square-box">
+						<div class="vertical-box">
+							<img src="../images/loadlazy.gif" />
+						</div>
+					</div>
+				</div>
+				
+				<!-- 商品信息 -->
+				<div id="info" class="pt-10 pb-10 pl-15 pr-15 bd-b bg-white">
+					<div class="lh-20 mui-ellipsis-2">&nbsp;</div>
+					<p class="mt-5 f-12 mui-ellipsis">&nbsp;</p>
+					<div class="pt-10">
+						<span class="va-t f-18 text-main">0.00 ₫</span>
+						<span class="u-small-tag ml-10 bg-main">包邮</span>
+						<span class="u-small-tag ml-10 bg-main">七天包退</span>
+					</div>
+				</div>
+				
+				<div id="chooseCoupon" class="mui-table-view mt-10">
+					<div class="mui-table-view-cell">
+						<div class="mui-navigate-right">
+							<span>领券</span>
+							<span class="ml-30">你有可领取的商家优惠券</span>
+						</div>
+					</div>
+				</div>
+				
+				<div id="selectSpec" class="mui-table-view mt-10">
+					<div class="mui-table-view-cell">
+						<div class="mui-navigate-right">
+							<span>已选</span>
+							<span class="js-select-specs ml-30">&nbsp;</span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="mt-10 pd-15 bd-t bd-b bg-white">
+					<div class="mui-clearfix">
+						<div class="mui-pull-left">物流</div>
+						<div class="mui-pull-left ml-30">
+							<div>维京物流</div>
+							<p class="mt-10 f-10">23:00前完成下单，预计明天(2017-02-22)送达</p>
+						</div>
+					</div>
+					<div class="mt-10 text-main m-vk-promise">
+						<span class="vk-icon vk-icon-promise"></span>
+						<span class="vk-icon vk-icon-arrow"></span>
+						<div class="f-12">维京承诺</div>
+						<p class="mt-10 f-8">第三方支付保障买卖双方权益</p>
+					</div>
+				</div>
+				
+				<div class="shop-info mt-10 pd-15 bd-t bd-b bg-white">
+					<div class="shop-logo vertical-box"><img src="../images/test/shop_logo.jpg" /></div>
+					<div class="shop-text pl-10">
+						<div class="shop-name mui-ellipsis">Vikingbuy旗舰店</div>
+						<ul class="u-grade mui-clearfix">
+							<li class="ico-crown"></li>
+							<li class="ico-diamonds"></li>
+							<li class="ico-diamonds"></li>
+						</ul>
+					</div>
+					<div class="shop-state mui-text-right">
+						<a href="" class="mui-btn">进店逛逛</a>
+						<div class="mt-10 text-gray f-12">销量：589546</div>
+					</div>
+				</div>
+				<!-- 少量评论 -->
+				<div id="goodComment"></div>
+			</div>
+			
+			<div class="tip-floor">
+				<div id="pullText" class="tip-floor-text">继续拖动，查看图文详情</div>
+			</div>
+			
+			<div id="touchBottom" class="hd-scroller mui-hidden">
+				<!-- 商品图文详情 -->
+				<div id="detail" class="mui-control-content mui-active">
+					<div class="goods-detail-wrap"></div>
+				</div>
+				<!-- 评论比例 -->
+				<div id="evaluate" class="mui-control-content">
+					<div class="mui-table pd-15 bd-b mui-text-center bg-white">
+						<div class="mui-table-cell mui-active">
+							<div>全部</div>
+							<div class="mt-10">123</div>
+						</div>
+						<div class="mui-table-cell">
+							<div>好评</div>
+							<div class="mt-10">110</div>
+						</div>
+						<div class="mui-table-cell">
+							<div>中评</div>
+							<div class="mt-10">10</div>
+						</div>
+						<div class="mui-table-cell">
+							<div>差评</div>
+							<div class="mt-10">3</div>
+						</div>
+						<div class="mui-table-cell">
+							<div>晒图</div>
+							<div class="mt-10">54</div>
+						</div>
+					</div>
+					
+					<!-- 评论列表 -->
+					<div id="commonts" class="m-evaluate-lists"></div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 选择规格 -->
+	<div class="m-spec-select ui-popup-bottom bg-white">
+		<span class="vk-icon vk-icon-close fn-close"></span>
+		<div class="pd-15">
+			<div class="pb-10 bd-b g-flex">
+				<div class="vertical-box">
+					<img src="../images/test/img.jpg" />
+				</div>
+				<div class="text flex-full pl-15">
+					<div class="text-main f-18">8.888.888.888 ₫</div>
+					<div class="mt-15 mb-15">库存407件</div>
+					<div class="mui-ellipsis">已选：<span class="text-main">“<span class="js-select-specs">&nbsp;</span>”</span></div>
+				</div>
+			</div>
+			<!-- 规格列表 -->
+			<div class="js-select-spec" id="specs"></div>
+			<div class="mt-20 bd-t pt-15 mui-clearfix">
+				<div class="mui-pull-left mt-10">购买数量</div>
+				<div class="mui-numbox mui-pull-right" data-numbox-min="1">
+					<button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+					<input class="mui-numbox-input" type="number" />
+					<button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+				</div>
+			</div>
+		</div>
+		<a class="mui-btn mui-btn-main add-cart">添加到购物车</a>
+	</div>
+	
+	<div id="couponLists" class="ui-popup-bottom" style="background-color: #f4f4f4;">
+		<span class="vk-icon vk-icon-close fn-close"></span>
+		<div class="pt-10 pb-10 bd-b lh-24 mui-text-center">领优惠券</div>
+		<div class="pd-15">
+			<div>可领优惠券</div>
+			<ul class="coupon-lists">
+				<li>
+					<div class="left">
+						<div class="vertical-box"><img src="../images/test/img.jpg" /></div>
+						<div class="info">
+							<div class="title mui-ellipsis">Vikingbuy全品类（特殊商品除外）Vikingbuy全品类（特殊商品除外）</div>
+							<div class="price mui-ellipsis text-main">888.888</div>
+							<div class="text mui-ellipsis text-main">满8.888.888.888 ₫可用</div>
+						</div>
+					</div>
+					<div class="operate">
+						<span class="single-item lh-20 f-12">点击<br />领取</span>
+					</div>
+				</li>
+				<li>
+					<div class="left">
+						<div class="vertical-box"><img src="../images/test/img.jpg" /></div>
+						<div class="info">
+							<div class="title mui-ellipsis">Vikingbuy全品类（特殊商品除外）Vikingbuy全品类（特殊商品除外）</div>
+							<div class="price mui-ellipsis text-main">888.888</div>
+							<div class="text mui-ellipsis text-main">满8.888.888.888 ₫可用</div>
+						</div>
+					</div>
+					<div class="operate disabled">
+						<span class="single-item lh-20 f-12">已经<br />领取</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="../js/detail.switch.js"></script>
+	<script type="text/javascript" src="../js/mui.lazyload.js" ></script>
+	<script type="text/javascript" src="../js/mui.lazyload.img.js" ></script>
+	<script type="text/javascript" src="../js/template.js" ></script>
+	<script type="text/html" id="goodCommentTemp">
+		<div class="mui-table-view mt-10">
+			<div class="mui-table-view-cell">
+				<a class="mui-navigate-right" href="#">
+					<span>评价({{countTotal}})</span>
+					<div class="mui-pull-right">好评<span class="ml-10 text-main">{{praised}}%</span></div>
+				</a>
+			</div>
+		</div>
+		<div class="m-evaluate-lists">
+			{{each lists as value index}}
+			{{if index < 3}}
+				<div class="evaluate-list bd-b">
+					<div class="mui-clearfix">
+						<span class="text-main">好评</span>
+						<p class="mui-pull-right f-10">{{value.username}}</p>
+					</div>
+					<div class="mt-5 lh-18 f-12">{{value.content}}</div>
+					{{if value.imgs.length > 0}}
+					<div class="evaluate-imgs mt-5">
+						<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control">
+							<div class="mui-scroll">
+								<ul class="m-img-lists">
+									{{each value.imgs as img}}
+										<li class="vertical-box"><img src="{{value}}" /></li>
+									{{/each}}
+								</ul>
+							</div>
+						</div>
+					</div>
+					{{/if}}
+				</div>
+			{{/if}}
+			{{/each}}
+		</div>
+	</script>
+	<script type="text/html" id="commentLists">
+		{{each lists as value}}
+			<div class="evaluate-list mt-10">
+				<div class="user-info pb-10 bd-b mui-clearfix">
+					<div class="vertical-box user-head"><img src="{{value.avatar}}" /></div>
+					<span class="ml-10">{{value.username}}</span>
+					<span class="mui-pull-right text-main">
+						{{if value.mood == 'positive'}}好评{{else if value.mood == 'neutral'}}中评{{else}}差评{{/if}}
+					</span>
+				</div>
+				<div class="mt-5 lh-18 f-12">{{value.content}}</div>
+				{{if value.imgs.length > 0}}
+				<div class="evaluate-imgs mt-5">
+					<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control">
+						<div class="mui-scroll">
+							<ul class="m-img-lists">
+								{{each value.imgs as img}}
+									<li class="vertical-box"><img src="{{value}}" /></li>
+								{{/each}}
+							</ul>
+						</div>
+					</div>
+				</div>
+				{{/if}}
+				<div class="mt-15 text-lightgrey f-12 mui-clearfix">
+					<!--<span>套餐类型：套餐1   颜色：青色</span>-->
+					<span class="mui-pull-right">{{value._datetime}}</span>
+				</div>
+			</div>
+		{{/each}}
+	</script>
+	<script>
+		
+		var detail = {
+			result: undefined,
+			comments: undefined,
+			praisedComments: undefined,
+			cartNum: document.getElementById("carNum"),
+			collectElem: document.getElementById("collect")
+		}
+		
+		//焦点图创建
+		function createSliderHtml(value){
+			var html = '';
+			for(var i = 0; i < value.length; i++) {
+				//复制最后一张
+				if(i == 0){
+					html += '<div class="mui-slider-item mui-slider-item-duplicate square-box"><div class="vertical-box"><img src="../images/loadlazy.gif" data-lazyload="'+ value[value.length - 1] +'" /></div></div>';
+				}
+				//正常循环
+				html += '<div class="mui-slider-item square-box"><div class="vertical-box"><img src="../images/loadlazy.gif" data-lazyload="'+ value[i] +'" /></div></div>';
+				//复制第一张
+				if(i == value.length - 1){
+					html += '<div class="mui-slider-item mui-slider-item-duplicate square-box"><div class="vertical-box"><img src="../images/loadlazy.gif" data-lazyload="'+ value[0] +'" /></div></div>';
+				}
+			}
+			html = '<div class="mui-slider-group mui-slider-loop">' + html + '</div>';
+			html += '<div class="mui-slider-number"><span class="mui-number-current">1</span><span class="mui-number-total">/'+ value.length +'</span></div>';
+			return '<div class="mui-slider">'+ html +'</div>';
+		}
+		
+		function getCartNum(){
+			var num = 0;
+			app.ajax({
+				data: {
+					method: 'api.module.order.cart.lists',
+					token: detail.token
+				},
+				async: false,
+				success: function(data) {
+					if(data.code == '200' && data.result) {
+						num = data.result.sku_counts;
+					}
+				}
+			})
+			return num;
+		}
+		
+		mui.plusReady(function(){
+			
+			showCurrentWebview('pop-in');
+			
+			//会员token
+			detail.token = plus.storage.getItem("token");
+			
+			var ws = plus.webview.currentWebview();
+			var sku_id = ws.value;
+			//购物车数量
+			detail.cartNum.innerHTML = getCartNum();
+			//商品关注状态
+			app.ajax({
+			    data: {
+			        method: 'api.module.member.favorite.add',
+			        token: detail.token,
+			        sku_id: sku_id
+			    },
+			    async: false,
+		      	success: function(ret){
+		      		if(ret.code == -42002){
+		      			detail.collectElem.innerHTML = '<span class="vk-icon-collect-s"></span><small>关注</small>';
+		      			detail.collectElem.setAttribute("data-collected", true);
+		      		}
+		      	}
+		    })
+			//请求商品数据
+			app.ajax({
+			    data: {
+			        method: 'api.module.goods.sku.detail',
+			        sku_id: sku_id
+			    },
+			    async: false,
+		      	success: function(data){
+		      		
+		      		detail.result = data.result;
+		      		
+		      		if(!data.result) return false;
+		      		
+		      		//商品焦点图
+		      		document.getElementById("slider").innerHTML = createSliderHtml(data.result.imgs);
+		      		mui(document).imageLazyload();
+		      		mui('#slider').slider();
+		      		
+		      		//商品信息
+		      		document.getElementById("info").innerHTML = '<div class="lh-20 mui-ellipsis-2">'+ data.result.name +'</div><p class="mt-5 f-12 mui-ellipsis">'+ data.result.subtitle +'</p><div class="pt-10"><span class="va-t f-18 text-main">'+ data.result.shop_price +' ₫</span><span class="u-small-tag ml-10 bg-main">包邮</span><span class="u-small-tag ml-10 bg-main">七天包退</span></div>';
+		      		
+		      		//优惠券
+		      		var spec = data.result.spec_str;//当前商品规格
+		      		//已选
+		      		var spec_arr = spec.split(";");
+		      		var spec_select = [];
+		      		for(var i = 0; i < spec_arr.length; i++){
+		      			if(spec_arr[i]){
+			      			spec_select.push(spec_arr[i].split(":")[1]);
+		      			}
+		      		}
+		      		mui.each(document.querySelectorAll(".js-select-specs"), function(){
+		      			this.innerHTML = spec_select.join('-');
+		      		})
+		      		
+		      		//请求所有评论
+		      		app.ajax({
+					    data: {
+					        method: 'api.module.comment.comment.comment',
+					        spu_id: data.result.spu_id
+					    },
+					    async: false,
+				      	success: function(ret){
+				      		detail.comments = ret.result;
+				      	}
+				    })
+		      		//请求好评
+		      		app.ajax({
+					    data: {
+					        method: 'api.module.comment.comment.comment',
+					        spu_id: data.result.spu_id,
+					        mood: "positive"
+					    },
+					    async: false,
+				      	success: function(ret){
+				      		detail.praisedComments = ret.result;
+				      	}
+				    })
+		      		detail.praisedComments.praised = parseInt(detail.praisedComments.count / detail.comments.count * 100);
+		      		detail.praisedComments.countTotal = detail.comments.count;
+		      		//好评列表
+		      		if(detail.praisedComments){
+		      			document.getElementById("goodComment").innerHTML = template('goodCommentTemp', detail.praisedComments);
+		      		}
+		      		//评论列表
+		      		if(detail.comments){
+		      			document.getElementById("commonts").innerHTML = template('commentLists', detail.comments);
+		      		}
+		      		
+		      		//规格列表
+					var specsHtml = '';
+					mui.each(data.result.specs, function(i){
+						var lists = '';
+						for(var l = 0; l < this.value.length; l++){
+							
+							lists += '<div class="mui-btn mui-btn-small'+ (this.value[l] == spec_select[i-1] ? ' mui-active' : '') +'">'+ this.value[l] +'</div>';
+						}
+						specsHtml += '<div class="mt-15 mb-20">'+ this.name +'</div><div class="spec-lists">'+ lists +'</div>';
+					})
+					document.getElementById("specs").innerHTML = specsHtml;
+					//库存 data.result.sku_total
+					document.querySelector(".mui-numbox").setAttribute("data-numbox-max", data.result.sku_total);
+		      		//加载商品详情
+		      		document.querySelector(".goods-detail-wrap").innerHTML = data.result.content;
+		      		
+		      		//切屏
+					detailSwitch.init('detailContent');
+					//实例化numbox
+					mui('.mui-numbox').numbox();
+		      	}
+		    })
+			
+		})
+			
+		window.onload = function(){
+			
+			//轮播图片切换数量下标设置
+			document.getElementById('slider').addEventListener('slide', function(event) {
+				this.querySelector(".mui-number-current").innerHTML = event.detail.slideNumber + 1;
+			});
+			
+			window.onscroll = function(){
+				var _nav = document.querySelector(".goods-detail-nav");
+				if(_nav.getAttribute('data-status')) return false;
+				if(document.body.scrollTop > 0){
+					_nav.classList.add("follow");
+				}else if(document.body.scrollTop == 0){
+					_nav.classList.remove("follow");
+				}
+			}
+			
+			mui("#detail-nav").on('tap', '.mui-control-item', function(){
+				setTimeout(function(){
+					detailSwitch.resetHeight(document.getElementById("touchBottom").clientHeight);
+				}, 200)
+			})
+			
+			//mui遮罩层
+			var maskStutas = false;
+			var mask = mui.createMask(function(){
+				if(!maskStutas) return false;//阻止关闭遮罩层
+			});
+			
+			//关闭规格选择弹窗
+			mui(document).on("tap", ".fn-close", function(){
+				maskStutas = true;
+				this.parentNode.classList.remove("show");
+				mask.close();
+			})
+			
+			//规格选择
+			mui(".js-select-spec").on('tap', '.mui-btn', function(){
+				mui(this).addClass("mui-active");
+				mui(this).siblings().removeClass("mui-active");
+			})
+			//显示规格选择弹窗
+			mui(document).on("tap", "#selectSpec", function(){
+				mask.show();
+				mui(".m-spec-select").addClass("show");
+			})
+			
+			//显示优惠券选择弹窗
+			mui(document).on("tap", "#chooseCoupon", function(){
+				mask.show();
+				mui("#couponLists").addClass("show");
+			})
+			
+			//添加收藏
+			document.getElementById("collect").addEventListener('tap', function(){
+				var collected = this.getAttribute("data-collected");
+				var method = 'api.module.member.favorite.add';
+				var that = this;
+				var timestamp = new Date().getTime();
+				if(that.getAttribute("data-time") && timestamp - that.getAttribute("data-time") < 2000){
+					return false;
+				}else{
+					that.setAttribute("data-time", timestamp);
+				}
+				if(!collected) method = 'api.module.member.favorite.delete';
+	      		app.ajax({
+				    data: {
+				        method: method,
+				        token: detail.token,
+				        sku_id: detail.result.sku_id
+				    },
+				    async: false,
+			      	success: function(ret){
+			      		if(ret.code == -90004){
+			      			mui.toast("请先登录后再操作~");
+			      		}
+			      		if(ret.code == 200){
+			      			if(collected){
+			      				mui.toast("已取消关注~");
+			      				that.innerHTML = '<span class="vk-icon-collect"></span><small>关注</small>';
+			      				that.removeAttribute("data-collected");
+			      			}else{
+			      				mui.toast("已关注商品~");
+			      				that.innerHTML = '<span class="vk-icon-collect-s"></span><small>关注</small>';
+			      				that.setAttribute("data-collected", true);
+			      			}
+			      		}
+			      	}
+			    })
+			})
+			
+			//添加到购物车
+			mui(document).on("tap", ".add-cart", function(){
+				var params = {};
+					params[detail.result.sku_id] = document.querySelector(".mui-numbox-input").value;
+				console.log(JSON.stringify(detail.token))
+				app.ajax({
+				    data: {
+				    	method: 'api.module.order.cart.add',
+				        token: detail.token,
+				        params: params
+				    },
+				    async: false,
+			      	success: function(ret){
+			      		
+			      		console.log(JSON.stringify(ret))
+			      		if(ret.code == 200 && ret.result){
+			      			mui.toast("加入购物车成功~");
+			      			//更新底部购物车数量
+			      			detail.cartNum.innerHTML = getCartNum();
+			      			//设置购物车更新状态
+			      			plus.storage.setItem("cartUpdateState", "true");
+			      		}else{
+			      			mui.toast("加入购物车失败~");
+			      		}
+			      	}
+			    })
+			})
+			
+		}
+		
+	</script>
+</body>
+</html>

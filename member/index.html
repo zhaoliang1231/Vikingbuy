@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>VikingBuy</title>
+    <link rel="stylesheet" href="../css/mui.min.css"/>
+    <link rel="stylesheet" href="../css/vk-ui.css"/>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/mui.min.js"></script>
+    <script type="text/javascript" src="../js/vk.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+</head>
+<body>
+	<nav class="mui-bar mui-bar-tab foot-nav">
+		<div href="../index.html" class="mui-tab-item">
+			<span class="vk-icon-home"></span>
+			<small>首页</small>
+		</div>
+		<div href="../goods/classify.html" class="mui-tab-item">
+			<span class="vk-icon-classify"></span>
+			<small>分类</small>
+		</div>
+		<div id="shopHelp" class="mui-tab-item">
+			<div class="main-item"><span class="vk-icon vk-icon-mall"></span></div>
+			<small>店铺</small>
+		</div>
+		<div href="../order/cart.html" class="mui-tab-item">
+			<span class="vk-icon-cart"></span>
+			<small>购物车</small>
+		</div>
+		<div class="mui-tab-item current">
+			<span class="vk-icon-my-s"></span>
+			<small>我的</small>
+		</div>
+	</nav>
+	
+	<div class="mui-content m-mb-idx">
+		<div class="mb-idx-hd bg-main">
+			<div class="bg-img">
+				<img src="../images/bg-img.png">
+			</div>
+			<a class="mb-icon-news">
+				<i class="vk-icon-news"></i>
+				<span class="badge-new"></span>
+			</a>
+			<div class="mui-text-center mb-idx-hd-con">
+				<div class="mui-inline" id="login">
+					<div class="avatar vertical-box">
+						<img id="avatar" class="img" src="../images/logo.png">
+					</div>
+					<div class="text-white f-12 mt-10" id="username">暂未登录</div>
+				</div>
+				<div class="mui-row text-white mui-text-center">
+					<div class="mui-col-xs-4" data-href="account_balance.html" data-vid="member-account_balance">
+						<div id="money">--</div>
+						<div class="mt-10">账户余额</div>
+					</div>
+					<div class="mui-col-xs-4" data-href="collect.html" data-vid="member-collect" >
+						<div id="favoriteNum">--</div>
+						<div class="mt-10">关注商品</div>
+					</div>
+					<div class="mui-col-xs-4" data-href="contacts/qrcode.html" data-vid="member-contacts-qrcode" >
+						<div class="vk-icon-ecode"></div>
+						<div class="mt-5">我的二维码</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<ul class="mt-10 mui-table-view">
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right" href="#" data-href="order/lists.html" data-vid="member-order-lists">
+					<span class="text-black">我的订单</span>
+					<small>查看全部订单</small>
+				</a>
+			</li>
+		</ul>
+		<div class="mui-row mui-text-center bd-b pt-15 pb-15 bg-white">
+			<div class="w20 mui-pull-left tag-box" id="stayPay" data-href="order/lists.html" data-vid="member-order-lists">
+				<!--<em class="tag">2</em>-->
+				<span class="vk-icon-payment "></span>
+				<div class="mt-5">待付款</div>
+			</div>
+			<div class="w20 mui-pull-left tag-box" id="stayDeliver" data-href="order/lists.html" data-vid="member-order-lists">
+				<span class="vk-icon-deliver"></span>
+				<div class="mt-5">待发货</div>
+			</div>
+			<div class="w20 mui-pull-left tag-box" id="stayReceipt" data-href="order/lists.html" data-vid="member-order-lists">
+				<span class="vk-icon-receipt"></span>
+				<div class="mt-5">待收货</div>
+			</div>
+			<div class="w20 mui-pull-left tag-box" id="commentNum" data-href="order/lists.html" data-vid="member-order-lists">
+				<span class="vk-icon-evaluate"></span>
+				<div class="mt-5">待评价</div>
+			</div>
+			<div class="w20 mui-pull-left tag-box" id="serverNum" data-href="order/lists.html" data-vid="member-order-lists">
+				<span class="vk-icon-service"></span>
+				<div class="mt-5">退款/售后</div>
+			</div>
+		</div>
+		<ul class="mt-10 mui-table-view">
+			<!--优惠券模块暂时没有-->
+			<!--<li class="mui-table-view-cell">
+				<a class="mui-navigate-right nav-vk-icon" href="#">
+					<span class="mui-pull-left mr-15 vk-icon-coupon-m"></span>
+					<span>我的优惠券</span>
+					<small id="couponNum"></small>
+				</a>
+			</li>-->
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right nav-vk-icon" data-href="footprints.html" data-vid="member-footprints" >
+					<span class="mui-pull-left mr-15 vk-icon-footprint"></span>
+					<span>我的足迹</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="mt-10 mui-table-view">
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right nav-vk-icon" data-href="address.html" data-vid="member-address">
+					<span class="mui-pull-left mr-15 vk-icon-seat"></span>
+					<span>收货地址</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="mt-10 mui-table-view mb-30">
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right nav-vk-icon" data-href="set.html" data-vid="member-set">
+					<span class="mui-pull-left mr-15 vk-icon-set"></span>
+					<span>设置</span>
+				</a>
+			</li> 
+		</ul>
+	</div>
+	<script type="text/javascript" src="../js/nav.js" ></script>
+    <script type="text/javascript" charset="utf-8">
+    	var ws;
+    	var my = {
+    		userName: document.getElementById("username"),
+    		money: document.getElementById("money"),
+    		favoriteNum: document.getElementById("favoriteNum"),
+    		stayPay: document.getElementById("stayPay"),
+			stayDeliver: document.getElementById("stayDeliver"),
+			stayReceipt: document.getElementById("stayReceipt"),
+			serverNum: 　document.getElementById("serverNum"),
+			commentNum: document.getElementById("commentNum"),
+    		loadData: function(token) {
+    			var token = token;
+    			/*获取基本信息*/
+    			app.ajax({
+					data: {
+						method: 'api.module.member.member.data',
+						token: token
+					},
+					type: 'get',
+					success: function(data) {
+//						console.log(JSON.stringify(data));
+						if( data.code == 200 ) {
+							if(data.result.nickname == '' || data.result.nickname == undefined) {
+								my.userName.innerText = data.result.username;
+							} else {
+								my.userName.innerText = data.result.nickname;
+							};
+							if(data.result.avatar) {
+								document.getElementById("avatar").setAttribute('src', data.result.avatar);
+							}
+							my.money.innerText = data.result.money;
+						}
+					},
+				});
+				/*获取关注商品的数量*/
+				app.ajax({
+					data: {
+						method: 'api.module.member.favorite.lists',
+						token: token
+					},
+					type: 'get',
+					success: function(data) {
+//						console.log(JSON.stringify(data))
+						if(data.code == '200') {
+							my.favoriteNum.innerText = data.result.count;
+						} 
+					}
+				});   
+				
+				/*获取待付款数量*/
+				app.ajax({
+					data: {
+						method: 'api.module.order.order.lists',
+						token: token,
+						type: 1
+					},
+					type: 'post',
+					success: function(data) {
+//						console.log(JSON.stringify(data))
+						if(data.code == '200') {
+							if(data.result != null && data.result.length != 0) {
+								var em;
+								em = document.createElement('em');
+								em.className = 'tag';
+								em.innerHTML = data.result.length;
+								my.stayPay.appendChild(em);
+							}
+						}
+					}
+				});
+				/*获取待发货数量*/
+				app.ajax({
+					data: {
+						method: 'api.module.order.order.lists',
+						token: token,
+						type: 3
+					},
+					type: 'post',
+					success: function(data) {
+//						console.log(JSON.stringify(data));   
+						if(data.code == '200') {
+							if(data.result != null && data.result.length != 0) {
+								var em;
+								em = document.createElement('em');
+								em.className = 'tag';
+								em.innerHTML = data.result.length;
+								my.stayDeliver.appendChild(em);
+							}
+						}
+					}
+				}),
+				/*获取待收货数量*/
+				app.ajax({
+					data: {
+						method: 'api.module.order.order.lists',
+						token: token,
+						type: 4
+					},
+					type: 'post',
+					success: function(data) {
+//						console.log(JSON.stringify(data));
+						if(data.code == '200') {
+							if(data.result != null && data.result.length != 0) {
+								var em;
+								em = document.createElement('em');
+								em.className = 'tag';
+								em.innerHTML = data.result.length;
+								my.stayReceipt.appendChild(em);
+							}
+						}
+					}
+				});
+				/*获取退款售后数量*/
+				app.ajax({
+					data: {
+						method: 'api.module.order.server.lists',
+						token: token,
+						type: 4
+					},  
+					type: 'post',
+					success: function(data) {
+//						console.log(JSON.stringify(data));
+						if(data.code == '200') {
+							if(data.result.lists != null && data.result.lists.length != 0) {
+								var em;
+								em = document.createElement('em');
+								em.className = 'tag';
+								em.innerHTML = data.result.lists.length;
+								my.serverNum.appendChild(em);
+							}
+						}
+					}
+				});
+				/*获取待评价数量*/
+				app.ajax({
+					data: {
+						method: 'api.module.comment.comment.lists',
+						token: token,
+						iscomment:0,
+					},
+					type: 'post',
+					success: function(data) {
+//						console.log(JSON.stringify(data));
+						if(data.code == '200') {
+							if(data.result.lists != null && data.result.lists.length != 0) {
+								var em;
+								em = document.createElement('em');
+								em.className = 'tag';
+								em.innerHTML = data.result.lists.length;
+								my.commentNum.appendChild(em);
+							}
+						}
+					}
+				})
+				/*获取优惠券数量*/
+//				app.ajax({
+//					data: {
+//						method: 'api.module.coupon.coupon.member_lists',
+//						token: token
+//					},
+//					type: 'get',
+//					success: function(data) {
+//						console.log(JSON.stringify(data))
+//						if(data.code == 200) {
+//							if(data.result) {
+//								document.getElementById("couponNum").innerHTML = data.result.length;
+//							} else {
+//								document.getElementById("couponNum").innerHTML = '0';
+//							}
+//						}
+//					}
+//				});
+    		}
+    	};
+      	mui.plusReady(function(){
+			
+			ws = plus.webview.currentWebview();
+			
+			var token=plus.storage.getItem('token');
+			
+			if( token ){
+				
+				my.loadData(token);
+				
+			} 
+			
+			window.addEventListener("refreshMy", function() {
+				my.loadData(plus.storage.getItem('token')); 
+			});
+			
+			window.addEventListener("loginSuccess", function() {
+				plus.webview.currentWebview().reload(); 
+			});   
+			
+			window.addEventListener("loginOut", function() {
+				plus.webview.currentWebview().reload();
+			});
+			
+			plus.navigator.setStatusBarBackground("#f85953");
+			
+			ws.addEventListener("show", function(){
+				plus.navigator.setStatusBarBackground("#f85953");
+			})
+			
+			ws.addEventListener("hide", function(){
+				plus.navigator.setStatusBarBackground("#ffffff");
+			})
+			
+			mui.init({
+				beforeback: function(){
+					plus.webview.currentWebview().hide();
+					return false;
+				}
+			})
+			
+			document.getElementById("login").addEventListener("tap", function(){
+				var islogin = app.checkLogin();
+				if( islogin ) return false;
+				mui.openWindow({
+					url: 'login.html',
+					id: 'member-login',
+					createNew:false,
+					show: {
+						autoShow: false
+					},
+					waiting: {
+			  			autoShow: true
+			  		}
+				});
+			})
+		})
+    </script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>VikingBuy</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/vk-ui.css"/>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <script type="text/javascript" src="../../js/public.js"></script>
+    <script type="text/javascript" src="../../js/config.js"></script>
+    <script type="text/javascript" src="../../js/mui.min.js"></script>
+    <script type="text/javascript" src="../../js/vk.js"></script>
+    <script type="text/javascript" src="../../js/app.js"></script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="vk-icon vk-icon-back mui-action-back nav-left"></a>
+		<h1 class="mui-title">新增商品</h1>
+	</header>
+	<div class="mui-content m-add-goods">
+		<ul class="mui-clearfix m-upload-plists">
+			<!--上传图拍后的图片效果-->
+			<!--<li class="list m-upload-plist">
+				<img class="img" src="../images/test/img.jpg">
+				<span class="vk-icon-close"></span>
+			</li>-->
+			<li class="list m-upload-btn mui-text-center add-img mb-5">
+				<span class="vk-icon-plus"></span>
+				<div class="mt-2">加入商品照片</div>
+			</li>
+		</ul>
+		<ul class="mui-table-view mt-10">
+			<li class="mui-table-view-cell">
+				<input type="text" class="input" name="title" placeholder="商品标题" value="" />
+			</li>
+		</ul>
+		<ul class="mui-table-view mt-10">
+			<li class="mui-table-view-cell js-select">
+				<a class="mui-navigate-right">
+					<span>商品分类</span>
+					<small class="classify-text">请选择商品所属类别</small>
+				</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<input class="good-describe" type="text" name="describe" placeholder="请输入商品描述，描述商品特点……（选填）">
+				<ul class="mui-clearfix m-upload-plists">
+					<!--上传图拍后的图片效果-->
+					<!--<li class="list m-upload-plist">
+						<img class="img" src="../images/test/img.png">
+						<span class="vk-icon-close"></span>
+					</li>-->
+					<li class="list m-upload-btn mui-text-center add-img mb-5">
+						<span class="vk-icon-plus"></span>
+						<div class="mt-2">加入商品照片</div>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		<!--<div class="m-goods-spec"></div>-->
+		<div class="m-goods-scale mt-10">
+			<!--<span class="vk-icon-delete text-main"></span>-->
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<span class="mui-pull-left mr-15 vk-icon-spec"></span>
+					<span>规格设置</span>
+					<input class="mui-pull-left text-black input" name="size" type="text" placeholder="白色S码" value="">
+				</li>
+				<li class="mui-table-view-cell">
+					<span class="mui-pull-left mr-15 vk-icon-tags"></span>
+					<span>商品价格</span>
+					<input class="mui-pull-left text-main price" name="price" type="text" placeholder="0.00" value="">
+				</li>
+				<li class="mui-table-view-cell">
+					<span class="mui-pull-left mr-15 vk-icon-box"></span>
+					<span>商品库存</span>
+					<input class="mui-pull-left text-black input"  name="num" type="text" placeholder="0" value="">
+				</li>
+			</ul>
+		</div>
+		<!--<ul class="mui-table-view">
+			<li class="mui-table-view-cell add-spec">
+				<span class="mui-pull-left mr-15 vk-icon-add"></span>
+				<span>添加规格</span>
+				<small class="text-black">设置颜色尺寸等</small>
+			</li>
+		</ul>-->
+		<ul class="mui-table-view mt-10 mb-10">
+			<li class="mui-table-view-cell">
+				<a>
+					<span class="mui-pull-left mr-15 vk-icon-good"></span>
+					<span>店长推荐</span>
+					<div class="mui-switch mui-switch-mini bg-red mui-active mui-pull-right js-switch">
+						<div class="mui-switch-handle"></div>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<div class="mui-row">
+			<div class="mui-col-xs-6">
+				<a class="mui-btn btn-full mui-btn-main-light">仅保存至商品库</a>
+			</div>
+			<div class="mui-col-xs-6">
+				<a class="mui-btn btn-full mui-btn-main js-add-btn">发布商品</a>
+				<!--按钮不能点击时-->
+				<!--<a class="mui-btn btn-full mui-btn-main mui-col-xs-12 mui-disabled">发布商品</a>-->
+			</div>
+		</div>
+	</div>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+		var txt
+		mui.plusReady(function(){
+			//显示窗口
+			showCurrentWebview('pop-in');
+			var self = plus.webview.currentWebview();
+			txt = document.querySelector('.classify-text');
+			if(self.name==undefined){
+				txt.innerHTML="请选择商品所属类别";
+			}else{
+				txt.innerHTML=self.name;
+				txt.setAttribute('data-id',self.ids);
+			}
+		})
+		window.onload=function(){
+			var fileUrl;
+			//打开相册
+			mui(document).on('tap', '.add-img', function() {
+				var img = this,
+				parent = img.parentNode,
+				li = document.createElement('li')
+				li.className = 'list m-upload-plist';
+				app.compressImage({
+		            photoUpload: false,
+		            callback: function(d){
+		              app.imageUpload(d.target,function(ret){
+		                fileUrl=d.target;
+		                li='<li class="list m-upload-plist mb-5"><img class="img" src="'+fileUrl+'"><span class="vk-icon-close"></span></li>';
+		             	var innerHtml=parent.innerHTML;
+						parent.innerHTML=li+innerHtml;
+		              })
+		            }
+	          	});
+			});
+			
+			//商品分类选择
+			mui(document).on('tap', '.js-select', function() {
+					mui.openWindow({
+					    url:'classify.html',
+					    id:'classify.html',
+					});
+					mui.later(function(){
+						mui.back();
+					}, 1000);
+			});
+			
+			//添加规格
+//			var spec = document.querySelector(".add-spec"),
+//			specWrap = document.querySelector(".m-goods-spec"),
+//			size,price,num;
+//			spec.addEventListener('tap',function(){
+//				var html = document.createElement('div');
+//				html.className='m-goods-scale mt-10'
+//				html.innerHTML ='<span class="vk-icon-delete text-main js-delete"></span>'
+//							+'<ul class="mui-table-view">'
+//							+'<li class="mui-table-view-cell">'
+//							+'<span class="mui-pull-left mr-15 vk-icon-spec"></span>'
+//							+'<span>规格设置</span>'
+//							+'<input class="mui-pull-left text-black input" name="size" type="text" placeholder="白色S码" value=""></li>'
+//							+'<li class="mui-table-view-cell">'
+//							+'<span class="mui-pull-left mr-15 vk-icon-tags"></span>'
+//							+'<span>商品价格</span>'
+//							+'<input class="mui-pull-left text-main price" type="text" name="price" placeholder="0.00" value=""></li>'
+//							+'<li class="mui-table-view-cell">'
+//							+'<span class="mui-pull-left mr-15 vk-icon-box"></span>'
+//							+'<span>商品库存</span>'
+//							+'<input class="mui-pull-left text-black input" name="num" type="text" placeholder="0" value=""></li>'
+//							+'</ul>'
+//				specWrap.appendChild(html);
+//				size = document.querySelector('input[name=size]');
+//				price = document.querySelector('input[name=price]');
+//				num = document.querySelector('input[name=num]');
+//			});
+			
+			//删除商品规格
+//			mui(document).on('tap', '.js-delete', function() {
+//				var parent = this.parentNode;
+//				mui.confirm("是否删除此规格？", '', ['取消', '确定'], function(){
+//					parent.remove();
+//				}, 'div')
+//			});
+			
+			var active;
+			//店长推荐
+			mui(document).on('toggle', '.js-switch', function() {
+				if(event.detail.isActive){
+				    active="on";
+				  }else{
+				  	active="null"
+			  	}
+			});
+			
+			//发布商品
+			var size,price,num;
+			mui(document).on('tap', '.js-add-btn', function() {
+				var name = document.querySelector('input[name=title]').value;
+				size = document.querySelector('input[name=size]').value;
+				price = document.querySelector('input[name=price]').value;
+				num = document.querySelector('input[name=num]').value;
+				var spu = {},album = {} ,specs = {};
+				spu.id = 'null';
+				spu.name = name +' '+ size;
+				spu.catid = document.querySelector('.classify-text').getAttribute('data-id');
+				spu.subtitle = 'null';spu.style = 'null';spu.brand_id ='null';spu.warn_number ='null';spu.status = 'null';
+				spu.sort = 'null';spu.weight = 'null';spu.volume = 'null';spu.keyword = 'null';
+				spu.description = document.querySelector('input[name=describe]').value;
+				spu.sn = 'null';spu.type_id = 'null';spu.content = 'null';spu.sid = 'null'; spu.server_time = 'null';spu.score='null';
+				mui.each('.m-upload-plist',function(i){
+					album.album =fileUrl;
+				});
+				album.album+=','+ album.album;
+				specs.status_ext = 'null';specs.sn = 'null';specs.barcode = 'null';specs.shop_price = price;
+				specs.market_price ='null'; specs.number = num;specs.weight = 'null';specs.volume = 'null';specs.sku_id = 'null';
+				plus.storage.setItem("add", spu);
+				plus.storage.setItem("add", album);
+				plus.storage.setItem("add", specs);
+				if(!name){
+					mui.toast("请输入商品标题");
+					return false;
+				}
+				if(!txt.innerHTML=='请选择商品所属类别'){
+					mui.toast("请选择商品所属类别");
+					return false;
+				}
+				app.ajax({
+					data: {
+						method: 'api.module.mutil.seller.add_goods',
+						spu:spu,
+						album:album,
+						specs:specs
+					},
+					type: 'get',
+					success: function(data) {
+						if(data.code == 200) {
+						}
+						mui.toast('添加成功')
+					}
+				});
+			});
+		}
+    </script>
+</body>
+</html>

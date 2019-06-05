@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>VikingBuy</title>
+    <link rel="stylesheet" href="../css/mui.min.css"/>
+    <link rel="stylesheet" href="../css/vk-ui.css"/>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/mui.min.js"></script>
+    <script type="text/javascript" src="../js/vk.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+</head>
+<body class="login-bgc">
+	<header class="mui-bar mui-bar-nav">
+	</header>
+	<div class="mui-content m-lrg">
+		<div class="m-lrg-img js-login-img">
+			<img class="m-lrg-login login-icon" src="../images/logo.png">
+			<img class="m-lrg-login login-text" src="../images/logo_text.png" />
+		</div>
+		<div class="mui-input-group">
+			<div class="mui-input-row">
+				<input type="tel" name="mobile" placeholder="手机号">
+			</div>
+			<div class="mui-input-row">
+				<input type="password" name="pwd" placeholder="密码" />
+			</div>
+		</div>
+		<div class="text-white f-10 lh-28">
+			<span data-href="forget.html" data-vid="member-forget">忘记密码？</span>
+			<span data-href="register.html" data-vid="member-register" class="mui-pull-right">注册</span>
+		</div>
+		<!--不可点击时-->
+		<!--<a class="mui-btn mui-btn-main mt-30 mui-disabled">登录</a>-->
+		<a id="login" class="mui-btn mui-btn-white">登录</a>
+		<div class="mui-text-center text-white f-14 mt-30">第三方登录</div>
+	</div>
+</body>
+<script>
+	mui.init();
+	window.onload=function(){
+		
+		var windowHeight = window.innerHeight;
+		//打开与关闭键盘
+		window.onresize=function() {
+			var wh = window.innerHeight;
+			if( wh >= windowHeight ){
+				mui(".js-login-img").removeClass('u-lrg-animate');
+			}else{
+				mui(".js-login-img").addClass('u-lrg-animate');
+			}
+		}
+		
+		/* 登录 */
+		document.getElementById("login").addEventListener("tap",function(){
+			var mobile = document.querySelector('input[name=mobile]').value;
+			var pwd = document.querySelector('input[name=pwd]').value;
+			var pass = true;
+			var uuid = module_config.uuid;
+			var verification = {
+				userName: function() {
+					if(/^\w{4,16}$/.test(mobile)) {
+						return true;
+					}
+					mui.toast("请输入正确的手机号！");
+					pass = false;
+					return false;
+				},
+				password: function() {
+					if(/^[A-Za-z0-9]{6,16}$/.test(pwd)) {
+						return true;
+					}
+					mui.toast("密码长度不能小于六位！");
+					pass = false;
+					return false;
+				},
+			};
+			for(key in verification) {
+				if(!verification[key]()) {
+					return false;
+				}
+				if(key == 'password') {
+					app.ajax({
+						data: {
+							method: 'api.module.member.public.login',
+							username: mobile,
+							identifier: uuid,
+							password: pwd
+						},
+						type: 'post',
+						beforeSend: function() {
+							plus.nativeUI.showWaiting();
+						},
+						complete: function() {
+							plus.nativeUI.closeWaiting();
+						},
+						success: function(data) {
+							console.log(JSON.stringify(data))
+							if(data.code == 200) {
+								mui.extend(module_config.user, data);
+								//登录成功更新、设置token
+								plus.storage.setItem("token", data.result.token);
+								mui.toast("登录成功");
+								mui.fire(plus.webview.getWebviewById('member-index'), 'refreshMy');
+								//登录成功提示
+								mui.later(function(){
+					        		turnAppointPage('member-index');
+					        	}, 1000)
+							} else {
+								mui.toast(data.msg);
+							}
+						}
+					})
+				}
+			}
+		})
+		
+		mui.plusReady(function(){
+			
+			plus.navigator.setStatusBarBackground("#f3514a");
+			//显示窗口
+			showCurrentWebview('pop-in');
+		})
+		
+	}
+</script>
+</html>

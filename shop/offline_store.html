@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta content="yes" name="apple-mobile-web-app-capable" />
+	    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	    <meta content="telephone=no" name="format-detection" />
+	    <title>VikingBuy</title>
+	    <link rel="stylesheet" href="../css/mui.min.css"/>
+	    <link rel="stylesheet" href="../css/vk-ui.css"/>
+	    <link rel="stylesheet" href="../css/style.css" />
+	    <link rel="stylesheet" href="../css/mui.picker.min.css" />
+	    <script type="text/javascript" src="../js/public.js"></script>
+	    <script type="text/javascript" src="../js/config.js"></script>
+	    <script type="text/javascript" src="../js/mui.min.js"></script>
+	    <script type="text/javascript" src="../js/vk.js"></script>
+	    <script type="text/javascript" src="../js/app.js"></script>
+	    <script type="text/javascript" src="../js/mui.picker.min.js"></script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="vk-icon vk-icon-back mui-action-back nav-left"></a>
+			<h1 class="mui-title">线下门店</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view m-align-left mt-10">
+				<li class="mui-table-view-cell">
+					<span class="f-14 title">名称</span>
+					<input class="f-12" name="offline-name" type="text" value=""  placeholder="请输入线下名称"/>
+				</li>
+				<li class="mui-table-view-cell" data-href="offline_type.html" data-vid="shop-offline_type">
+					<a class="mui-navigate-right" href="#">
+						<span class="f-14 title">类型</span>
+						<span class="f-12 type">有限责任公司</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<span class="f-14 title">地址</span>
+					<input class="f-12" name="address" type="text" value=""  placeholder="请输入线下门店地址"/>
+				</li>
+				<li class="mui-table-view-cell">
+					<span class="f-14 title">法定代表人</span>
+					<input class="f-12" name="user" type="text" value=""  placeholder="请输入线下门店法人姓名"/>
+				</li>
+			</ul>
+			<ul class="mui-table-view m-align-left mt-10">
+				<li class="mui-table-view-cell">
+					<span class="f-14 title">登记机关</span>
+					<input class="f-12" name="offline-office" type="text" value="重庆市南岸区工商局" />
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right js-time" href="#" data-options='{"type":"date"}'>
+						<span class="f-14 title">成立日期</span>
+						<span class="f-12 js-start-time start">2017-02-24</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right js-time" href="#" data-options='{"type":"date"}'>
+						<span class="f-14 title">营业期限</span>
+						<span class="f-12"><span class="start-time">2017-02-24</span> — <span class="js-start-time end-time">2037-02-23</span></span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<span class="f-14 title">经营范围</span>
+					<input class="f-12" name="business-scope" type="text" value=""  placeholder="请输入线下门店经营范围"/>
+				</li>
+			</ul>
+			<div class="ml-15 mr-15 mt-30">
+				<a class="mui-btn mui-btn-primary bd-sml js-sure">确认</a>
+			</div>
+		</div>
+		<script>
+			mui.plusReady(function(){
+				//显示窗口
+				showCurrentWebview('pop-in');
+	      	});
+			window.onload=function(){
+				var name = document.querySelector('input[name=offline-name]'),
+					type = document.querySelector('.type'),
+					address = document.querySelector('input[name=address]'),
+					user = document.querySelector('input[name=user]'),
+					office = document.querySelector('input[name=offline-office]'),
+					dataTime = document.querySelector('.start'),
+					startTime = document.querySelector(".start-time"),
+					endTime = document.querySelector(".end-time"),
+					time = startTime.innerHTML+'-'+ endTime.innerHTML,
+					business = document.querySelector('input[name=business-scope]'),
+					btnSure = document.querySelector('.js-sure');
+					btnSure.addEventListener('tap',function(){
+						document.activeElement.blur();
+						if(!name.value){
+							mui.toast('请输入门店名称');
+							return false;
+						}
+						if(!type.innerHTML){
+							mui.toast('请选择门店类型');
+							return false;
+						}
+						if(!address.value){
+							mui.toast('请输入门店地址');
+							return false;
+						}
+						if(!user.value){
+							mui.toast('请输入门店法人');
+							return false;
+						}
+						if(!office.value){
+							mui.toast('请输入登记机关');
+							return false;
+						}
+						if(!business.value){
+							mui.toast('请输入经营范围');
+							return false;
+						}
+						app.ajax({
+							data: {
+								method: 'api.module.mutil.seller.edit_offline_info',
+								token: plus.storage.getItem("token"),
+								offline_name:name,
+								offlne_type:type,
+								offline_address:address,
+								offline_legal:user,
+								offline_office:office,
+								offline_found:dataTime,
+								operate_time:time,
+								business_scope:business
+							},
+							type: 'get',
+							success: function(data) {
+								if(data.code == 200) {
+									console.log(JSON.stringify(data))
+								}
+							}
+						})
+						
+					});
+			};
+			
+			//日期选择
+			(function($) {
+				$.init();
+				var startTime = document.querySelector(".start-time"),
+				time = document.querySelector('.start'),
+				endTime = document.querySelector(".end-time");
+				var result = $('.js-start-time');
+				var btns = $('.js-time');
+				btns.each(function(i, btn) {
+					btn.addEventListener('tap', function() {
+						var optionsJson = this.getAttribute('data-options') || '{}';
+						var options = JSON.parse(optionsJson);
+						var id = this.getAttribute('id');
+						var picker = new $.DtPicker(options);
+						picker.show(function(rs) {
+							result[i].innerText = rs.text;
+							startTime.innerHTML=time.innerHTML;
+							var start = new Date(startTime.innerHTML.replace(/\-/g, "\/")),
+							end = new Date(endTime.innerHTML.replace(/\-/g, "\/"));
+							if(start>=end){
+								mui.toast('结束时间不能小于开始时间');
+								return false;
+							}
+							picker.dispose();
+						});
+					}, false);
+				});
+			})(mui);
+		</script>
+	</body>
+</html>

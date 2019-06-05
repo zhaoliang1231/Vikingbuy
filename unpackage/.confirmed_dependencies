@@ -1,0 +1,443 @@
+{
+	"index.html": {
+		"resources": [
+			"images/ico_index_new.png",
+			"images/test/img.jpg",
+			"images/test/goods.png",
+			"js/public.js",
+			"js/vk.js",
+			"fonts/vk.ttf",
+			"images/ico_index_soon.png",
+			"images/test/pic_3.jpg",
+			"js/mui.min.js",
+			"images/ico_index_shop.png",
+			"images/ico_index_classify.png",
+			"images/ico_buy_bg.jpg",
+			"js/app.js",
+			"images/test/goods_3.png",
+			"images/test/pic_2.jpg",
+			"images/ico_index_notice.png",
+			"images/ico_index_sign.png",
+			"images/ico_index_hot.png",
+			"js/nav.js",
+			"css/style.css",
+			"images/test/pic_1.jpg",
+			"images/test/banner.jpg",
+			"images/ico_index_luck.png",
+			"images/ico_index_limit.png",
+			"css/vk-ui.css",
+			"css/mui.min.css",
+			"images/ico_feature_bg.jpg",
+			"images/ico_like_bg.jpg",
+			"images/ico_index_coupon.png",
+			"js/mui.lazyload.img.js",
+			"js/config.js",
+			"js/mui.lazyload.js",
+			"images/loadlazy.gif",
+			"images/banner_lazyload.gif",
+			"js/template.js"
+		],
+		"refer": [
+			"goods/classify.html"
+		]
+	},
+	"order/cart.html": {
+		"resources": [
+			"images/ico_cart.png",
+			"images/test/img.jpg",
+			"css/vk-ui.css",
+			"css/mui.min.css",
+			"css/style.css",
+			"fonts/vk.ttf",
+			"js/app.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"js/nav.js",
+			"js/vk.js",
+			"js/config.js",
+			"js/mui.lazyload.js",
+			"js/mui.lazyload.img.js",
+			"js/jquery-3.1.1.min.js",
+			"js/template.js",
+			"images/loadlazy.gif"
+		],
+		"refer": [
+			"goods/classify.html",
+			"member/index.html",
+			"goods/detail.html"
+		]
+	},
+	"goods/classify.html": {
+		"resources": [
+			"css/vk-ui.css",
+			"css/mui.min.css",
+			"css/style.css",
+			"images/test/classify_banner.jpg",
+			"js/config.js",
+			"images/test/goods.png",
+			"fonts/vk.ttf",
+			"js/app.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"js/nav.js",
+			"js/vk.js"
+		],
+		"refer": [
+			"order/cart.html",
+			"member/index.html",
+			"shop/novice_help.html"
+		]
+	},
+	"member/login.html": {
+		"resources": [
+			"js/app.js",
+			"images/logo.png",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/vk-ui.css",
+			"css/mui.min.css",
+			"css/style.css",
+			"images/logo_text.png",
+			"js/vk.js",
+			"js/config.js",
+			"fonts/vk.ttf"
+		],
+		"refer": [
+			"member/register.html",
+			"member/forget.html"
+		]
+	},
+	"member/register.html": {
+		"resources": [
+			"js/app.js",
+			"images/logo.png",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/vk-ui.css",
+			"css/mui.min.css",
+			"css/style.css",
+			"images/logo_text.png",
+			"js/vk.js",
+			"js/config.js"
+		]
+	},
+	"member/index.html": {
+		"resources": [
+			"js/app.js",
+			"fonts/mui.ttf",
+			"js/public.js",
+			"js/nav.js",
+			"css/style.css",
+			"js/vk.js",
+			"fonts/vk.ttf",
+			"images/logo.png",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/vk-ui.css",
+			"images/bg-img.png",
+			"js/config.js"
+		],
+		"refer": [
+			"order/cart.html",
+			"member/login.html",
+			"member/contacts/qrcode.html",
+			"goods/classify.html",
+			"member/set.html",
+			"member/address.html",
+			"member/account_balance.html",
+			"member/collect.html",
+			"member/footprints.html",
+			"member/order/lists.html"
+		]
+	},
+	"member/set.html": {
+		"resources": [
+			"css/vk-ui.css",
+			"css/mui.min.css",
+			"css/style.css",
+			"fonts/vk.ttf",
+			"js/app.js",
+			"images/logo.png",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"js/public.js",
+			"js/vk.js",
+			"js/config.js",
+			"images/test/shop_logo.jpg"
+		],
+		"refer": [
+			"member/info.html",
+			"member/safe/index.html",
+			"member/about.html",
+			"member/message_set.html",
+			"member/login.html"
+		]
+	},
+	"member/address.html": {
+		"resources": [
+			"images/ico_address.png",
+			"css/mui.min.css",
+			"css/vk-ui.css",
+			"css/style.css",
+			"fonts/vk.ttf",
+			"js/app.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"js/vk.js",
+			"js/config.js",
+			"js/template.js",
+			"js/jquery-3.1.1.min.js"
+		],
+		"refer": [
+			"member/address_add.html"
+		]
+	},
+	"member/address_add.html": {
+		"resources": [
+			"css/mui.min.css",
+			"js/area.js",
+			"js/area_data.js",
+			"fonts/mui.ttf",
+			"css/vk-ui.css",
+			"css/style.css",
+			"fonts/vk.ttf",
+			"js/app.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"js/vk.js",
+			"js/config.js"
+		]
+	},
+	"member/contacts/qrcode.html": {
+		"resources": [
+			"css/mui.min.css",
+			"images/popup_bg.png",
+			"images/security/google.png",
+			"images/security/twitter.png",
+			"images/security/zalo.png",
+			"images/security/facebook.png",
+			"images/test/qr_code.png",
+			"images/test/shop_logo.jpg",
+			"js/app.js",
+			"js/public.js",
+			"css/style.css",
+			"js/vk.js",
+			"fonts/vk.ttf",
+			"js/mui.min.js",
+			"css/vk-ui.css",
+			"js/config.js"
+		]
+	},
+	"member/account_balance.html": {
+		"resources": [
+			"js/jquery-3.1.1.min.js",
+			"fonts/vk.ttf",
+			"js/app.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"js/public.js",
+			"css/vk-ui.css",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/vk.js",
+			"js/config.js"
+		],
+		"refer": [
+			"member/account_recharge.html"
+		]
+	},
+	"member/collect.html": {
+		"resources": [
+			"images/ico_collect.png",
+			"images/test/img.jpg",
+			"css/mui.min.css",
+			"fonts/vk.ttf",
+			"js/app.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/vk-ui.css",
+			"css/style.css",
+			"js/vk.js",
+			"js/config.js",
+			"js/template.js",
+			"js/mui.lazyload.js",
+			"js/mui.lazyload.img.js",
+			"images/loadlazy.gif"
+		]
+	},
+	"member/info.html": {
+		"resources": [
+			"css/mui.min.css",
+			"css/vk-ui.css",
+			"css/style.css",
+			"fonts/vk.ttf",
+			"js/app.js",
+			"images/logo.png",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"js/public.js",
+			"js/vk.js",
+			"js/config.js",
+			"images/test/shop_logo.jpg"
+		],
+		"refer": [
+			"member/contacts/qrcode.html",
+			"member/modify_nickname.html"
+		]
+	},
+	"member/modify_nickname.html": {
+		"resources": [
+			"css/mui.min.css",
+			"css/vk-ui.css",
+			"css/style.css"
+		]
+	},
+	"member/safe/index.html": {
+		"resources": [
+			"css/mui.min.css",
+			"images/security/google.png",
+			"images/security/twitter.png",
+			"images/security/facebook.png",
+			"images/security/zalo.png",
+			"js/app.js",
+			"fonts/mui.ttf",
+			"js/public.js",
+			"css/style.css",
+			"js/vk.js",
+			"fonts/vk.ttf",
+			"js/mui.min.js",
+			"css/vk-ui.css",
+			"js/config.js"
+		]
+	},
+	"member/about.html": {
+		"resources": [
+			"images/logo.png",
+			"css/mui.min.css",
+			"fonts/vk.ttf",
+			"js/app.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"js/public.js",
+			"css/vk-ui.css",
+			"css/style.css",
+			"js/vk.js",
+			"js/config.js"
+		],
+		"refer": [
+			"member/agreement.html",
+			"member/help.html"
+		]
+	},
+	"member/footprints.html": {
+		"resources": [
+			"fonts/vk.ttf",
+			"js/app.js",
+			"images/test/img.jpg",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/vk-ui.css",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/vk.js",
+			"js/config.js",
+			"js/template.js",
+			"js/mui.lazyload.js",
+			"js/mui.lazyload.img.js",
+			"images/test/goods_2.png",
+			"images/test/goods_3.png",
+			"images/test/goods.png",
+			"images/test/goods_1.png",
+			"images/test/pic.jpg",
+			"images/ico_collect.png"
+		],
+		"refer": [
+			"index.html"
+		]
+	},
+	"member/agreement.html": {
+		"resources": [
+			"css/mui.min.css",
+			"fonts/vk.ttf",
+			"js/app.js",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/vk-ui.css",
+			"css/style.css",
+			"js/vk.js",
+			"js/config.js"
+		]
+	},
+	"member/message_set.html": {
+		"resources": [
+			"fonts/vk.ttf",
+			"js/mui.min.js",
+			"js/public.js",
+			"css/vk-ui.css",
+			"css/mui.min.css",
+			"css/style.css"
+		]
+	},
+	"member/help.html": {
+		"resources": [
+			"fonts/vk.ttf",
+			"js/app.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"js/public.js",
+			"css/vk-ui.css",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/vk.js",
+			"js/config.js"
+		]
+	},
+	"goods/detail.html": {
+		"resources": [
+			"images/loadlazy.gif",
+			"images/ico_shop_crown.png",
+			"images/test/img.jpg",
+			"fonts/mui.ttf",
+			"js/detail.switch.js",
+			"css/vk-ui.css",
+			"css/mui.min.css",
+			"css/style.css",
+			"images/test/shop_logo.jpg",
+			"images/ico_shop_diamonds.png",
+			"js/app.js",
+			"js/public.js",
+			"js/mui.lazyload.js",
+			"js/vk.js",
+			"js/mui.lazyload.img.js",
+			"fonts/vk.ttf",
+			"js/mui.min.js",
+			"js/template.js",
+			"js/config.js"
+		]
+	},
+	"shop/novice_help.html": {
+		"resources": [
+			"images/help/icon_close.png",
+			"images/help/icon_add.png",
+			"images/help/icon_upload.png",
+			"images/help/icon_sale.png",
+			"images/help/icon_self.png",
+			"images/help/icon_manage.png"
+		]
+	},
+	"member/forget.html": {
+		"resources": [
+			"fonts/vk.ttf",
+			"css/vk-ui.css",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/app.js",
+			"images/logo.png",
+			"js/mui.min.js",
+			"js/public.js",
+			"images/logo_text.png",
+			"js/vk.js",
+			"js/config.js"
+		]
+	}
+}

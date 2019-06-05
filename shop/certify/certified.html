@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>VikingBuy</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/vk-ui.css"/>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <script type="text/javascript" src="../../js/public.js"></script>
+    <script type="text/javascript" src="../../js/config.js"></script>
+    <script type="text/javascript" src="../../js/mui.min.js"></script>
+    <script type="text/javascript" src="../../js/vk.js"></script>
+    <script type="text/javascript" src="../../js/app.js"></script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="vk-icon vk-icon-back mui-action-back nav-left"></a>
+		<h1 class="mui-title">店铺认证</h1>
+	</header>
+	<div class="mui-content m-aftersale">
+		<div class="m-aftersale-hd">
+			<div class="mui-text-center mt-50">
+				<span class="icon ico-finish"><img src="../../images/ico_certify_finish.png"></span>
+				<div class="mui-h6 text-dark mt-30 mb-20">已认证！</div>
+			</div>
+		</div>
+		<ul class="mui-table-view m-align-left mt-10">
+			<li class="mui-table-view-cell" data-href="information.html" data-vid="shop-certify-information">
+				<a class="mui-navigate-right" href="corporate_info.html">
+					<span class="f-14 title">法人资料</span>
+				</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right" href="business_license.html">
+					<span class="f-14 title">营业执照</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+    <script type="text/javascript" charset="utf-8">
+      	mui.plusReady(function(){
+			//显示窗口
+			showCurrentWebview('pop-in');
+		})
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>VikingBuy</title>
+    <link rel="stylesheet" href="../css/mui.min.css"/>
+    <link rel="stylesheet" href="../css/vk-ui.css"/>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/mui.min.js"></script>
+    <script type="text/javascript" src="../js/vk.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="vk-icon vk-icon-back mui-action-back nav-left"></a>
+		<h1 class="mui-title">店铺</h1>
+	</header>
+	<div class="mui-content">
+		<div class="m-balace m-shop-bar bg-main pd-15 text-white">
+			<div class="f-14">
+				<span>当前余额</span>
+				<span class="mui-pull-right">我要提现</span>
+			</div>
+			<div class="balace">--</div>
+			<div class="message-nav">
+				<div class="mui-tab-item">
+					<span>待结算金额（₫）</span>
+					<div class="mt-5 js-money">0.00</div>
+					<div class="space"></div>
+				</div>
+				<div class="mui-tab-item">
+					<span>冻结金额（₫）</span>
+					<div class="mt-5 frozen">--</div>
+				</div>
+			</div>
+		</div>
+		<ul class="mt-10 mui-table-view">
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right nav-vk-icon" data-href="my_shop.html" data-vid="shop-my_shop">
+					<span class="mui-pull-left mr-15 vk-icon-shop"></span>
+					<span>我的店铺</span>
+					<small>管理店铺</small>
+				</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right nav-vk-icon" href="cash_account.html">
+					<span class="mui-pull-left mr-15 vk-icon-withdraw"></span>
+					<span>提现账户</span>
+					<small>0 个账户</small>
+				</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right nav-vk-icon" href="#">
+					<span class="mui-pull-left mr-15 vk-icon-password"></span>
+					<span>支付密码</span>
+					<small>立即设置</small>
+				</a>
+			</li>
+		</ul>
+		<ul class="mt-10 mui-table-view">
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right nav-vk-icon" href="#">
+					<span class="mui-pull-left mr-15 vk-icon-coupon-m"></span>
+					<span>优惠券管理</span>
+					<small>添加优惠券</small>
+				</a>
+			</li>
+		</ul>
+		<ul class="mt-10 mui-table-view">
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right nav-vk-icon" href="#">
+					<span class="mui-pull-left mr-15 vk-icon-count"></span>
+					<span>统计</span>
+					<small>查看数据统计</small>
+				</a>
+			</li>
+		</ul>
+	</div>
+    <script type="text/javascript" charset="utf-8">
+    	var my = {
+    		money:document.querySelector('.balace'),
+    		frozen:document.querySelector('.frozen'),
+    		balance:document.querySelector('.js-money'),
+    		loadData:function(token){
+    			var token = token;
+    			app.ajax({
+					data: {
+						method: 'api.module.member.member.data',
+						token:token
+					},
+					type: 'get',
+					success: function(data) {
+						if(data.code == 200) {
+							my.money.innerHTML=data.result.money;
+							my.frozen.innerHTML=data.result.frozen_money;
+						}
+					}
+				});
+    			app.ajax({
+					data: {
+						method: 'api.module.order.cart.lists',
+						token:token
+					},
+					type: 'get',
+					success: function(data) {
+						if(data.code == 200) {
+							my.balance.innerHTML = data.result.all_prices;
+						}
+					}
+				})
+    			
+    		}
+    	}
+      	mui.plusReady(function(){
+			//显示窗口
+			showCurrentWebview('pop-in');
+			var token=plus.storage.getItem('token');
+			if( token ){
+				my.loadData(token);
+			}
+		})
+    </script>
+</body>
+</html>

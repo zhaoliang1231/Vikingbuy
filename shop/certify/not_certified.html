@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta content="yes" name="apple-mobile-web-app-capable" />
+	    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	    <meta content="telephone=no" name="format-detection" />
+	    <title>VikingBuy</title>
+	    <link rel="stylesheet" href="../../css/mui.min.css"/>
+	    <link rel="stylesheet" href="../../css/vk-ui.css"/>
+	    <link rel="stylesheet" href="../../css/style.css" />
+	    <script type="text/javascript" src="../../js/public.js"></script>
+	    <script type="text/javascript" src="../../js/config.js"></script>
+	    <script type="text/javascript" src="../../js/mui.min.js"></script>
+	    <script type="text/javascript" src="../../js/vk.js"></script>
+	    <script type="text/javascript" src="../../js/app.js"></script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="vk-icon vk-icon-back mui-action-back nav-left"></a>
+			<h1 class="mui-title">店铺认证</h1>
+		</header>
+		<div class="mui-content">
+			<div class="bg-white">
+				<div class="pt-30 mui-text-center">
+					<span class="f-12">认证前请准备好以下</span>
+					<h5 class="text-dark lh-20">2种图片资料</h5>
+				</div>
+				<ul class="m-shop-certified mui-table-view">
+					<li class="mui-table-cell">
+						<div class="cricle">1</div>
+						<div class="ml-5 text">
+							<h6 class="text-dark">营业执照</h6>
+							<div>需文字清晰、边框完整、露出国徽</div>
+							<div>拍复印件需加盖印章，可用有效特许证件代替</div>
+						</div>
+						<div class="example pd-10">
+							<div class="ico-example"></div>
+							<div class="verify-code">
+								<img src="../../images/test/shop_example.png" />
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-cell">
+						<div class="cricle">2</div>
+						<div class="ml-5 text">
+							<h6 class="text-dark">法人身份证</h6>
+							<div>身份证需上传正反两面，需文字清晰可认，不能使用复印件</div>
+						</div>
+						<div class="example pd-10">
+							<div class="ico-example"></div>
+							<div class="verify-code">
+								<img src="../../images/test/shop_example_1.png" />
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="ml-15 mr-15 mt-30" data-href="step.html" data-vid="shop-certify-step">
+				<a href="#" class="mui-btn mui-btn-primary bd-sml">我准备好了，立即认证</a>
+			</div>
+		</div>
+		<script>
+			mui.plusReady(function(){
+				//显示窗口
+				showCurrentWebview('pop-in');
+			})
+		</script>
+	</body>
+</html>

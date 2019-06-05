@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>VikingBuy</title>
+    <link rel="stylesheet" href="../css/mui.min.css"/>
+    <link rel="stylesheet" href="../css/vk-ui.css"/>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/mui.min.js"></script>
+    <script type="text/javascript" src="../js/vk.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="vk-icon vk-icon-back mui-action-back nav-left"></a>
+		<h1 class="mui-title">个人信息</h1>
+	</header>
+	<div class="mui-content m-personal-info">
+		<ul class="mui-table-view mt-10">
+			<li class="mui-table-view-cell js-pop-show js-pop-show">
+				<a class="mui-navigate-right avatar-box">
+					<span>头像</span>
+					<small>
+						<div class="vertical-box avatar">
+							<img id="avatar" src="../images/test/shop_logo.jpg">
+						</div>
+					</small>
+				</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<span>账号</span>
+				<small id="account" class="pr-20">18233333333</small>
+			</li>
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right" data-href="modify_nickname.html" data-vid="member-modify_nickname">
+					<span>昵称</span>
+					<small id="username">海盗云商</small>
+				</a>
+			</li>
+			<li class="mui-table-view-cell sex js-pop-show sex">
+				<a class="mui-navigate-right">
+					<span>性别</span>
+					<small id="sex">男</small>
+				</a>
+			</li>
+			<li class="mui-table-view-cell ">
+				<a class="mui-navigate-right" data-href="contacts/qrcode.html" data-vid="member-contacts-qrcode">
+					<span>我的二维码</span>
+					<small class="vk-icon-ecode lh-20"></small>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="ui-popup m-info-pop js-popup mui-hidden">
+	</div>
+	<div class="ui-popup-wrap m-info-pop-wrap js-pop-wrap mui-hidden sex">
+		<ul class="mui-table-view mui-radio mui-semiSolid-check m-radio-transp" id="sexChoice">
+			<li class="mui-table-view-cell js-popup" data-id="1">
+				<input type="radio" checked="checked" id="sex1" name="sex" />
+				<label for="sex1">男</label>
+			</li>
+			<li class="mui-table-view-cell js-popup" data-id="2">
+				<input type="radio" id="sex2" name="sex" />
+				<label for="sex2">女</label>
+			</li>
+		</ul>
+	</div>
+	<div class="ui-popup-wrap m-info-pop-wrap js-pop-wrap mui-hidden phone">
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell getImage" data-id="1">
+				<span>拍照</span>
+			</li>
+			<li class="mui-table-view-cell getImage" data-id="2" >
+				<span>选择图片</span>
+			</li>
+		</ul>
+	</div>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+		var infOpt = {
+			userName: document.getElementById("username"),
+			account: document.getElementById("account"),
+			sex: document.getElementById("sex"),
+			sexType: 0,
+			token:'',
+			getInfo:function(){
+				/*获取基本信息*/
+				app.ajax({
+					data: {
+						method: 'api.module.member.member.data',
+						token: infOpt.token
+					},
+					type: 'get',
+					success: function(data) {
+//						console.log(JSON.stringify(data));
+						if( data.code == 200 ) {
+							
+							infOpt.userName.innerText = data.result.username;
+							
+							infOpt.userName.parentNode.setAttribute('data-value',infOpt.userName.innerText);
+							
+							infOpt.account.innerText = data.result.mobile;
+							if(data.result.avatar) {
+								document.getElementById("avatar").setAttribute('src', data.result.avatar);
+							}
+							//设置性别
+							infOpt.sexType = data.result.sex;
+							if(data.result.sex == 1){
+								infOpt.sex.innerHTML = '男';
+							}else if(data.result.sex == 2){
+								infOpt.sex.innerHTML = '女';
+							}
+						}
+					},
+				});
+			},
+			/*性别更改*/
+			updateSex: function() {
+				app.ajax({
+					data: {
+						method: 'api.module.member.member.resetnickname',
+						token: infOpt.token,
+						sex: infOpt.sexType
+					},
+					type: 'post',
+					success: function(data) {
+//						console.log(JSON.stringify(data))
+						if(data.code == 200 && data.result) {
+							mui.toast('会员性别修改成功');
+							if(infOpt.sexType == 1){
+								infOpt.sex.innerHTML = '男';
+							}else{
+								infOpt.sex.innerHTML = '女';
+							}
+						}else{
+							mui.toast("修改会员性别失败~");
+						}
+					}
+				})
+			},
+			/*上传头像*/
+			uploadAvatar: function(src){
+				app.ajax({
+					data: {
+						method: 'api.module.member.member.avatar',
+						token: infOpt.token,
+						avatar: src,
+						x:0,
+						y:0,
+						w:500,
+						h:500
+					},
+					type: 'post',
+					success: function(data) {
+						console.log(JSON.stringify(data));
+						if(data.code == 200 && data.result){
+							mui.toast('头像修改成功');
+							plus.webview.currentWebview().reload();
+							mui.fire(plus.webview.getWebviewById("member-index"), "loginSuccess");
+							mui.fire(plus.webview.getWebviewById("member-set"), "refresh");
+						}
+					}
+				})
+			}
+		}
+		window.onload=function(){
+			
+			mui.plusReady(function(){
+				showCurrentWebview('pop-in')
+				infOpt.token=plus.storage.getItem('token');
+				infOpt.getInfo();
+				
+				//上传图片
+				mui(document).on('tap', '.getImage', function() {
+					var photoUpload=true;
+					var id = this.getAttribute('data-id');
+					if( id == 2 ) photoUpload=false;
+					app.compressImage({
+						photoUpload: photoUpload,
+						callback: function(d){
+							app.imageUpload(d.target,function(ret){
+								var fileUrl=JSON.parse(ret.responseText).result;
+								document.getElementById('avatar').setAttribute('src',fileUrl);
+								infOpt.uploadAvatar(fileUrl);
+							})
+						}
+					});
+					mui('.ui-popup').addClass('mui-hidden');
+					mui('.ui-popup-wrap').addClass('mui-hidden');
+					
+				});
+				
+				//刷新页面
+				window.addEventListener('refresh',function(){
+					plus.webview.currentWebview().reload();
+				})
+				
+			})
+			
+			//性别选择
+			mui(document).on("tap", "#sexChoice li", function(){
+				var id = this.getAttribute("data-id");
+				if(id){
+					if(id == infOpt.sexType){
+						mui.toast("选择信息与当前相同");
+						mui('.ui-popup').addClass('mui-hidden');
+						mui('.ui-popup-wrap').addClass('mui-hidden');
+						return false;
+					}
+					infOpt.sexType = id;
+					infOpt.updateSex();
+				}
+			})
+			
+			mui('.js-popup').each(function(){
+				this.addEventListener('click',function(){
+					setTimeout(function(){
+						mui('.ui-popup').addClass('mui-hidden');
+						mui('.ui-popup-wrap').addClass('mui-hidden');
+					},100)
+				})
+			})
+			
+			mui(".js-pop-show").each(function(){
+				var _this=this
+				
+				this.addEventListener('click',function(){
+					mui('.ui-popup').removeClass('mui-hidden');
+					if(_this.className.indexOf('sex') >= 0){
+						mui('.ui-popup-wrap.sex').removeClass('mui-hidden');
+					}else{
+						mui('.ui-popup-wrap.phone').removeClass('mui-hidden');
+					}
+					
+				})
+			})
+			
+		}
+		
+    </script>
+</body>
+</html>

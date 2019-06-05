@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta content="yes" name="apple-mobile-web-app-capable" />
+	    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	    <meta content="telephone=no" name="format-detection" />
+	    <title>VikingBuy</title>
+	    <link rel="stylesheet" href="../css/mui.min.css"/>
+	    <link rel="stylesheet" href="../css/vk-ui.css"/>
+	    <link rel="stylesheet" href="../css/style.css" />
+	    <script type="text/javascript" src="../js/public.js"></script>
+	    <script type="text/javascript" src="../js/mui.min.js"></script>
+	    <script type="text/javascript" src="../js/app.js"></script>
+</head>
+<body style="background-color: transparent;">
+	<div class="m-novice-help js-novice mui-hidden">
+		<div class="pb-10 f-18 text-white">新手帮助</div>
+		<ul class="help-lists">
+			<li class="help-list">
+				<img src="../images/help/icon_sale.png" />
+				<h6 class="title">新手开店</h6>
+				<p class="f-12 text mui-ellipsis">快速开店，轻松赚钱</p>
+			</li>
+			<li class="help-list">
+				<img src="../images/help/icon_upload.png" />
+				<h6 class="title">商品管理</h6>
+				<p class="f-12 text mui-ellipsis">一键上架，轻松管理</p>
+			</li>
+		</ul>
+		<div class="help-modules">
+			<ul class="mb-30">
+				<li class="module-item item1">
+					<img src="../images/help/icon_manage.png" />
+					<div>订单</div>
+				</li>
+				<li class="module-item item2">
+					<img src="../images/help/icon_add.png" />
+					<div>商品</div>
+				</li>
+				<li class="module-item item3" data-href="index.html" data-vid="shop-index">
+					<img src="../images/help/icon_self.png" />
+					<div>店铺</div>
+				</li>
+			</ul>
+			<img id="closeView" src="../images/help/icon_close.png" class="shade-close"/>
+		</div>
+	</div>
+	<script>
+		mui.plusReady(function(){
+			plus.webview.currentWebview().show('none');
+			plus.nativeUI.closeWaiting();
+			
+			document.querySelector(".js-novice").classList.remove("mui-hidden");
+			
+			document.getElementById("closeView").addEventListener('tap', function(){
+				plus.webview.currentWebview().close('fade-out');
+			})
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta content="yes" name="apple-mobile-web-app-capable" />
+	    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	    <meta content="telephone=no" name="format-detection" />
+	    <title>VikingBuy</title>
+	    <link rel="stylesheet" href="../../css/mui.min.css"/>
+	    <link rel="stylesheet" href="../../css/vk-ui.css"/>
+	    <link rel="stylesheet" href="../../css/style.css" />
+	    <script type="text/javascript" src="../../js/public.js"></script>
+	    <script type="text/javascript" src="../../js/config.js"></script>
+	    <script type="text/javascript" src="../../js/mui.min.js"></script>
+	    <script type="text/javascript" src="../../js/vk.js"></script>
+	    <script type="text/javascript" src="../../js/app.js"></script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="vk-icon vk-icon-back mui-action-back nav-left"></a>
+			<h1 class="mui-title">店铺认证</h1>
+		</header>
+		<div class="mui-content">
+			<div class="m-certity-audit mui-text-center">
+				<div class="img"><img src="../../images/ico_shop_audit.png.gif"/></div>
+				<div class="mt-30">您的资料提交成功。</div>
+				<div>我们会尽快审核，请耐心等待！</div>
+			</div>
+		</div>
+		<script>
+			mui.plusReady(function(){
+				//显示窗口
+				showCurrentWebview('pop-in');
+			})
+		</script>
+	</body>
+</html>

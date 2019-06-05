@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>VikingBuy</title>
+    <link rel="stylesheet" href="../css/mui.min.css"/>
+    <link rel="stylesheet" href="../css/vk-ui.css"/>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/mui.min.js"></script>
+    <script type="text/javascript" src="../js/vk.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="vk-icon vk-icon-back mui-action-back nav-left"></a>
+		<h1 class="mui-title">新建收货地址</h1>
+	</header>
+	<div class="mui-content m-address-add">
+		<!--有收货地址时-->
+		<ul class="mui-table-view m-align-left">
+			<li class="mui-table-view-cell">
+				<span class="title">收货人</span>
+				<input type="text" name="address_name" placeholder="请输入收货人" />
+			</li>
+			<li class="mui-table-view-cell">
+				<span class="title">联系电话</span>
+				<input type="mobile" name="mobile" placeholder="请输入联系电话" />
+			</li>
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right">
+					<span class="title">所在地区</span>
+					<input id="city" type="text" readonly=""  value="">
+					<input id="district-text-id" type="hidden" name="district_id" value="">
+				</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<textarea placeholder="详细地址" class="address_txt" ></textarea>
+			</li>
+		</ul>
+		<!--标签暂时不要-->
+		<!--<ul class="mui-table-view mt-10 m-align-left m-tag-border">
+			<li class="mui-table-view-cell">
+				<span class="title">标签</span>
+				<span class="item-tag active">住址</span>
+				<span class="item-tag ml-10">公司</span>
+				<span class="item-tag ml-10">学校</span>
+			</li>
+		</ul>-->
+		<div class="pl-15 pr-15 mt-30">
+			<a class="mui-btn mui-btn-main bd-sml js-add ">确定</a>
+		</div>
+	</div>
+	<script src="../js/area_data.js" ></script>
+	<script src="../js/area.js" ></script>
+    <script>
+      	mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+		window.onload=function(){
+			var address_name = document.querySelector('input[name=address_name]');
+			var mobile = document.querySelector('input[name=mobile]');
+			var address_id = document.querySelector('input[name=district_id]');
+			var address_txt = document.querySelector('.address_txt');
+			var district_text_id = document.getElementById("district-text-id");
+			var city = document.getElementById("city");
+			var add_id = document.querySelector(".m-address-add");
+			var checkTe = /^1[3|4|5|7|8][0-9]\d{8}$/;
+			var token,data_id;
+			mui.plusReady(function(){
+				showCurrentWebview('pop-in');
+				var self = plus.webview.currentWebview();
+				if(self.name){
+					address_name.value = self.name;
+					mobile.value = self.mobile;
+					district_text_id.value = self.district_id;
+					address_txt.innerHTML=self.address;
+					city.value = self.city;
+					data_id = self.ad_id;
+					add_id.setAttribute('data-id',data_id);
+					mui(".js-add").addClass('edit');
+				}
+				
+				token = plus.storage.getItem('token');
+				document.querySelector('.js-add').addEventListener('tap',function(){
+					var status=mui(".js-add").hasClass('edit');
+					if(address_name.value==""){
+						mui.toast("请输入收货人姓名");
+					}
+					else if(mobile.value=="" || !checkTe.test(mobile.value) ){
+						mui.toast("请输入正确手机号码");
+					}
+					else if(address_id.value==""){
+						mui.toast("请选择地区");
+					}
+					else if(address_txt.value==""){
+						mui.toast("请输入详细地址");
+					}
+					else if(status){
+						edit_address();
+					}else{
+						add_address();
+					}
+				})
+				//添加地址ajax
+				function add_address(){
+					app.ajax({
+			            data: {
+			              method: 'api.module.member.address.add',
+			              token: token,
+			              name: address_name.value,
+			              mobile: mobile.value,
+			              district_id: address_id.value,
+			              address:address_txt.value,
+			            },
+			            type: 'get',
+			            success: function(data) {
+//			            	console.log(JSON.stringify(data))
+			            	if(data.code==200){
+		            			mui.toast("添加成功");
+	            				mui.fire(plus.webview.getWebviewById("member-address"), "refresh");
+								mui.later(function(){
+									mui.back();
+								}, 1000);
+			            	}else{
+			            		mui.toast("添加失败");
+			            	}
+			            },
+			        })
+				}
+				//删除地址ajax
+				function edit_address(){
+					app.ajax({
+			            data: {
+			              method: 'api.module.member.address.edit',
+			              token: token,
+			              name: address_name.value,
+			              mobile: mobile.value,
+			              district_id: address_id.value,
+			              address:address_txt.value,
+			              id: data_id
+			            },
+			            type: 'get',
+			            success: function(data) {
+//			            	console.log(JSON.stringify(data))
+			            	if(data.code==200){
+		            			mui.toast("编辑成功");
+	            				mui.fire(plus.webview.getWebviewById("member-address"), "refresh");
+								mui.later(function(){
+									mui.back();
+								}, 1000);
+			            	}else{
+			            		mui.toast("编辑失败");
+			            	}
+			            },
+			         })
+				}
+				
+			})
+			
+			
+			
+			var gear = new LArea();
+			gear.init({
+				'trigger': '#city', 
+				'valueTo': '#district-text-id', 
+				'keys': {
+					id: 'id',
+					name: 'name'
+				}, 
+				'type': 1, 
+				'data': LAreaData 
+			});
+		}
+    </script>
+</body>
+</html>

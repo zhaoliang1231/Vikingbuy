@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>VikingBuy</title>
+    <link rel="stylesheet" href="../css/mui.min.css"/>
+    <link rel="stylesheet" href="../css/vk-ui.css"/>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/mui.min.js"></script>
+    <script type="text/javascript" src="../js/vk.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+</head>
+<body class="login-bgc">
+	<header class="mui-bar mui-bar-nav">
+		<a class="vk-icon vk-icon-back mui-action-back nav-left text-white"></a>
+	</header>
+	<div class="mui-content m-lrg">
+		<div class="m-lrg-img js-login-img"> 
+			<img class="m-lrg-login login-icon" src="../images/logo.png">
+			<img class="m-lrg-login login-text" src="../images/logo_text.png" />
+		</div>
+		<div class="forget-step">
+			<div class="mui-input-group m-flex">
+				<div class="mui-input-row">
+					<input type="mobile" name="mobile" placeholder="请输入11位手机号">
+				</div>
+				<div class="mui-input-row flex">
+					<input class="mui-pull-left u-code-input" name="code" type="text" placeholder="验证码" />
+					<a class="u-code-btn mui-pull-right js-code-btn">获取验证码</a>
+				</div>
+			</div>
+			<!--不可点击时-->
+			<!--<a class="mui-btn mui-btn-main mt-30 mui-disabled">下一步</a>-->
+			<a class="mui-btn mui-btn-white mt-30 next">下一步</a>
+		</div>
+		<div class="repPwd mui-hidden">
+			<div class="mui-input-group">
+				<div class="mui-input-row">
+					<input type="password" name="pwd1" placeholder="请输入新密码">
+				</div>
+				<div class="mui-input-row">
+					<input type="password" name="pwd2" placeholder="请再次输入密码">
+				</div>
+			</div>
+			<!--不可点击时-->
+			<!--<a class="mui-btn mui-btn-main mt-30 mui-disabled">确定</a>-->
+			<a class="mui-btn mui-btn-white mt-30 js-repeat-pwd">确定</a>
+		</div>
+	</div>
+	<script>
+		mui.init();
+		mui.plusReady(function(){
+			plus.navigator.setStatusBarBackground("#f3514a");
+			//显示窗口
+			showCurrentWebview('pop-in');
+		})
+		window.onload=function(){
+			
+			var reg = {
+				mobile: document.querySelector('input[name=mobile]'),
+				vcode: document.querySelector('input[name=code]'),
+				pwd1: document.querySelector('input[name=pwd1]'),
+				pwd2: document.querySelector('input[name=pwd2]'),
+				checkTel: /^1[3|4|5|7|8][0-9]\d{8}$/,
+				checkPwd: /^[A-Za-z0-9]{6,16}$/,
+				mid: '',
+			}
+			
+			// 获取验证码
+			document.querySelector(".js-code-btn").addEventListener("tap", function(){
+				var tel = reg.mobile.value;
+				if(mui(this).hasClass("disabled")) return false;
+				if(!tel || !reg.checkTel.test(tel)){
+					mui.toast("请输入正确的11位手机号！");
+					return false;
+				}
+				this.classList.add("disabled");
+				app.ajax({
+				    data: {
+				        method: 'api.module.member.public.vcode',
+				        mobile: tel
+				    },
+			      	type: 'post',
+			      	success: function(data){
+			      		console.log(JSON.stringify(data));
+				        if(data.code == 200 && data.result){
+				        	mui(".js-code-btn").vcodeTip(20);
+				        }else{
+				        	mui.toast(data.msg);
+				        }
+			      	}
+			    })
+			})
+			
+			//验证验证码
+			document.querySelector('.next').addEventListener('tap',function(){
+				var tel = reg.mobile.value;
+				if(!tel || !reg.checkTel.test(tel)){
+					mui.toast("手机号不正确！");
+					return false;
+				}
+				if(!reg.vcode.value){
+					mui.toast("验证码错误");
+					return false;
+				}
+				app.ajax({
+				    data: {
+				        method: 'api.module.member.public.valid_vcode',
+				        mobile: reg.mobile.value,
+				        vcode: reg.vcode.value
+				    },
+			      	type: 'post',
+			      	success: function(data){
+			      		console.log(JSON.stringify(data));
+				        if( data.code == 200 ){
+				        	reg.mid = data.result.params.mid;
+				        	mui('.forget-step').addClass('mui-hidden');
+				        	mui('.repPwd').removeClass('mui-hidden');
+				        }else{
+				        	mui.toast( data.msg );
+				        }
+			      	}
+			    })
+			})
+			
+			//充值密码
+			document.querySelector('.js-repeat-pwd').addEventListener('tap',function(){
+				var pwd1 = reg.pwd1.value;
+				if(!pwd1 || !reg.checkPwd.test(pwd1)) {
+					mui.toast('密码格式不正确');
+					return false;
+				}else if( reg.pwd1.value != reg.pwd2.value ){
+					mui.toast('密码不一致');
+					return false;
+				}
+				console.log(reg.pwd1.value)
+				console.log(reg.mid);
+				app.ajax({
+				    data: {
+				        method: 'api.module.member.public.reset_password',
+				        pwd: reg.pwd1.value,
+				        mid: reg.mid
+				    },
+			      	type: 'post',
+			      	success: function(data){
+			      		console.log(JSON.stringify(data));
+				        if( data.code == 200 ){
+				        	mui.later(function(){
+				        		mui.back();
+				        	}, 1000)
+				        }else{
+				        	mui.toast( data.msg );
+				        }
+			      	}
+			    })
+				
+			})
+			
+			//打开与关闭键盘
+			var windowHeight = window.innerHeight;
+			window.onresize=function() {
+				var wh = window.innerHeight;
+				if( wh >= windowHeight ){
+					mui(".js-login-img").removeClass('u-lrg-animate');
+				}else{
+					mui(".js-login-img").addClass('u-lrg-animate');
+				}
+			}
+		}
+	</script>
+</body>
+</html>

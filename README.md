@@ -1,0 +1,52 @@
+#com.dmibox.porject.vikingbuy
+
+### 目录结构
+- index.html 首页
+- member/ 会员
+  - index.html 首页
+  - oauth.html 第三方登录触发
+  - callback.html 第三方登录回调
+  - login.html 登录
+  - register.html 注册
+  - forget.html 找回密码身份校验
+  - setpwd.html 重置密码
+  - money/ 余额
+    - log.html 明细
+    - deposit.html 充值
+    - success.html 充值状态
+  - order/ 订单
+    - lists.html 订单列表
+    - detail.html 订单详情
+    - comment.html 发表评价
+  - safe/ 账户安全
+  - service/ 售后服务
+  - contacts/ 联系人
+  - chat/ 聊天
+- order/ 订单
+  - cart.html 购物车
+  - create.html 订单创建
+  - invoice/ 发票
+    - index.html 选择发票
+    - add.html 新增发票
+  - pay_type.html 交易类型
+  - pay_ment.html 支付方式
+  - success.html 提交成功
+- shop/ 店铺
+	- account/ 账户
+	- certify/ 认证
+	- coupont/ 优惠券
+	- goods/ 商品
+	- order/ 订单
+- goods/ 商品
+	- classify.html 商品分类
+	- search.html 商品搜素
+	- lists.html 商品列表
+	- detail.html 商品详情
+	- luck_draw.html 抽奖
+- message/ 消息
+	- index.html 消息主页
+	- detail.html 消息详情
+	- headlines.html 官方头条
+	- logistics.html 物流
+- coupon/ 优惠券
+	- receive.html 优惠券领取

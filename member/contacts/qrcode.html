@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>VikingBuy</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/vk-ui.css"/>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <script type="text/javascript" src="../../js/public.js"></script>
+    <script type="text/javascript" src="../../js/config.js"></script>
+    <script type="text/javascript" src="../../js/mui.min.js"></script>
+    <script type="text/javascript" src="../../js/vk.js"></script>
+    <script type="text/javascript" src="../../js/app.js"></script>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+	<a class="nav-left vk-icon vk-icon-back mui-action-back"></a>
+	<h1 class="mui-title">我的二维码</h1>
+</header>
+<div class="mui-content my-qrcode mui-text-center">
+	<div class="m-shop-qrcode bg-white">
+		<div class="name">
+			<div class="mb-5 vertical-box"><img src="../../images/test/shop_logo.jpg"/></div>
+			<h6>我的昵称</h6>
+		</div>
+		<div class="qrcode pd-15"><img src="../../images/test/qr_code.png" /></div>
+		<div class="mt-30 mui-h6">扫一扫上面的二维码图案，加我好友</div>
+		<div class="text-main more js-more">分享给更多好友<div class="arrow mt-15">&lt;&lt;</div></div>
+	</div>
+	<ul class="mt-40 m-shop-share m-my-share js-popup-cnt mui-clearfix hidden">
+		<li class="item"><div class="ico-logo"><img src="../../images/security/facebook.png"/></div></li>
+		<li class="item"><div class="ico-logo"><img src="../../images/security/twitter.png"/></div></li>
+		<li class="item"><div class="ico-logo"><img src="../../images/security/zalo.png"/></div></li>
+		<li class="item"><div class="ico-logo"><img src="../../images/security/google.png"/></div></li>
+	</ul>
+</div>
+<script>
+	mui.init();
+	window.onload=function(){
+		mui.plusReady(function(){
+	
+			showCurrentWebview('pop-in')
+			
+		})
+		var more = document.querySelector('.js-more'),
+		popup = document.querySelector('.js-popup-cnt');
+		more.addEventListener('tap',function(event){
+			event.stopPropagation();
+			popup.classList.add("active");
+			popup.classList.remove("hidden");
+			popup.classList.remove("slide-down");
+		});
+		popup.addEventListener('tap',function(event){
+			event.stopPropagation();
+		});
+		document.addEventListener('tap',function(event){
+			if(popup.classList.contains('active')==true){
+				popup.classList.remove("active");
+				popup.classList.add("hidden");
+				popup.classList.add("slide-down");
+			}
+		});
+		
+		
+	}
+</script>
+</body>
+</html>

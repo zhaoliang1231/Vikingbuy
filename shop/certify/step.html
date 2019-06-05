@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta content="yes" name="apple-mobile-web-app-capable" />
+	    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	    <meta content="telephone=no" name="format-detection" />
+	    <title>VikingBuy</title>
+	    <link rel="stylesheet" href="../../css/mui.min.css"/>
+	    <link rel="stylesheet" href="../../css/vk-ui.css"/>
+	    <link rel="stylesheet" href="../../css/style.css" />
+	    <script type="text/javascript" src="../../js/public.js"></script>
+	    <script type="text/javascript" src="../../js/config.js"></script>
+	    <script type="text/javascript" src="../../js/mui.min.js"></script>
+	    <script type="text/javascript" src="../../js/vk.js"></script>
+	    <script type="text/javascript" src="../../js/app.js"></script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="vk-icon vk-icon-back mui-action-back nav-left"></a>
+			<h1 class="mui-title">店铺认证</h1>
+		</header>
+		<div class="mui-content">
+			<!--第一步-->
+			<div class="step-one">
+				<div class="pl-15 pd-10 lh-20 text-main f-10">我们会保障信息安全和个人隐私，所有信息将做加密处理。</div>
+				<ul class="mui-table-view m-align-left f-14">
+					<li class="mui-table-view-cell">
+						<span class="title">法人姓名</span>
+						<input class="w60 mui-pull-right mui-text-right" name="user" type="text" value=""  placeholder="输入法人姓名"/>
+					</li>
+					<li class="mui-table-view-cell">
+						<span class="title">法人身份证</span>
+						<input class="w60 mui-pull-right mui-text-right" name="num" type="text" value=""  placeholder="输入法人身份证"/>
+					</li>
+				</ul>
+				<ul class="mui-clearfix m-upload-plists add m-certify-plists">
+					<li class="list m-upload-btn mui-text-center add-img">
+						<div class="mui-inline">
+							<span class="vk-icon-plus"></span>
+							<div class="mt-5">上传身份证正面</div>
+						</div>
+					</li>
+					<li class="list m-upload-btn mui-text-center add-img">
+						<div class="mui-inline">
+							<span class="vk-icon-plus"></span>
+							<div class="mt-5">上传身份证反面</div>
+						</div>
+					</li>
+				</ul>
+				<ul class="mui-table-view m-align-left f-14">
+					<li class="mui-table-view-cell">
+						<span class="title">执照名称</span>
+						<input class="w60 mui-pull-right mui-text-right" name="license-name" type="text" value=""  placeholder="输入执照名称"/>
+					</li>
+					<li class="mui-table-view-cell">
+						<span class="title">执照注册号</span>
+						<input class="w60 mui-pull-right mui-text-right" name="license-no" type="text" value=""  placeholder="输入执照注册号"/>
+					</li>
+					<li class="mui-table-view-cell">
+						<span class="title">执照所在地</span>
+						<input class="w60 mui-pull-right mui-text-right" name="address" type="text" value=""  placeholder="输入执照所在地"/>
+					</li>
+				</ul>
+				<ul class="mui-clearfix m-upload-plists m-certify-plists add">
+					<li class="list m-upload-btn mui-text-center add-img">
+						<div class="mui-inline">
+							<span class="vk-icon-plus"></span>
+							<div class="mt-5">上传营业执照</div>
+						</div>
+					</li>
+				</ul>
+				<div class="ml-15 mr-15 mt-30 mb-30">
+					<a href="#" class="mui-btn mui-btn-primary bd-sml next">下一步</a>
+				</div>
+			</div>
+			<!--第二步-->
+			<div class="step-two mui-hidden">
+				<div class="pl-15 pt-10 pb-10 lh-20 text-gray">短信验证码已发送至<span class="num">182*****333</span></div>
+				<ul class="mui-table-view get-code">
+					<li class="mui-table-view-cell">
+						<span>验证码</span>
+						<input class="f-12 ml-10" name='code' type="number" placeholder="" />
+						<span class="mui-btn mui-btn-primary btn-code js-code">获取验证码</span>
+					</li>
+				</ul>
+				<div class="mt-30 pl-15 pr-15">
+					<a class="mui-btn mui-btn-primary bd-sml js-sure">确认</a>
+				</div>
+			</div>
+		</div>
+		<script>
+			//获取手机号
+			var step = {
+				num : document.querySelector('.num'),
+				tel:null,
+				loadData:function(token){
+					var token = token;
+					app.ajax({
+						data: {
+							method: 'api.module.member.member.data',
+							token: token
+						},
+						type: 'get',
+						success: function(data) {
+							if(data.code == 200) {
+								step.tel=data.result.username;
+							  	var mtel = step.tel.substr(0, 3) + '****' + step.tel.substr(7);  
+								step.num.innerHTML=mtel;
+							}
+						}
+					})
+				}
+			};
+			window.onload=function(){
+				//打开相册
+				mui(document).on('tap', '.add-img', function() {
+					var img = this;
+					app.compressImage({
+			            photoUpload: false,
+			            callback: function(d){
+			              app.imageUpload(d.target,function(ret){
+			                var fileUrl=d.target;
+			                img.innerHTML='<img src="'+ fileUrl+'"/>';
+			              })
+			            }
+		          	});
+				});
+				
+				//认证第一步
+				var next = document.querySelector(".next"),
+				use = document.querySelector('input[name=user]'),
+				idNum = document.querySelector('input[name=num]'),
+				licName = document.querySelector('input[name=license-name]'),
+				licNo = document.querySelector('input[name=license-no]'),
+				address = document.querySelector('input[name=address]'),
+				stepOne = document.querySelector('.step-one'),
+				stepTwo =document.querySelector('.step-two'),
+				regName = /^[\u4e00-\u9fa5]{2,4}$/,
+				regIdNo =/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/;
+				var face, con,bus;
+				next.addEventListener('tap',function(){
+					document.activeElement.blur();
+					if(!use.value){
+						mui.toast('请输入您的姓名');
+						return false;
+					}
+					if(!regName.test(use.value)){
+						mui.toast("您的姓名填写有误");
+						return false;
+					}
+					if(!idNum.value){
+						mui.toast("请输入您的身份证号码");
+						return false;
+					}
+					if(!regIdNo.test(idNum.value)){
+						mui.toast("请填写正确的身份证号码");
+						return false;
+					}
+					if(!licName.value){
+						mui.toast("请输入执照名称");
+						return false;
+					}
+					if(!licNo.value){
+						mui.toast("请输入执照注册号");
+						return false;
+					}
+					if(!address.value){
+						mui.toast("请输入执照所在地");
+						return false;
+					}
+					mui.each(document.querySelectorAll(".add-img"), function(i){
+						var img = this.getElementsByTagName("img")[0];
+						if(img){
+							if(i == 0){
+								face = img.getAttribute("src");
+							}else if(i==1){
+								con = img.getAttribute("src");
+							}else{
+								bus = img.getAttribute("src");
+							}
+						}
+					})
+					if(!face){
+						mui.toast("请上传身份证正面照片");
+						return false;
+					}
+					if(!con){
+						mui.toast("请上传身份证反面照片");
+						return false;
+					}if(!bus){
+						mui.toast("请上传营业执照");
+						return false;
+					}
+					app.ajax({
+						data: {
+							method: 'api.module.mutil.seller.auth_shop_one',
+							token: plus.storage.getItem("token"),
+							legal_name:use.value,
+							id_number:idNum.value,
+							a_id_card:face,
+							b_id_card:con,
+							license_name:licName.value,
+							license_number:licNo.value,
+							license_address:address.value,
+							license_img:bus
+						},
+						type: 'get',
+						success: function(data) {
+							if(data.code == 200) {
+								stepOne.classList.add("mui-hidden");
+								stepTwo.classList.remove("mui-hidden");
+							}
+						}
+					})
+				});
+				
+				//获取验证码
+				mui(document).on('tap', '.js-code', function() {
+					var tel = step.tel;
+					app.ajax({
+					    data: {
+					        method: 'api.module.member.public.vcode',
+					        mobile: tel
+					    },
+				      	type: 'post',
+				      	success: function(data){
+					        if(data.code == 200 && data.result){
+					        	mui(".js-code").vcodeTip(60);
+					        }else{
+					        	mui.toast(data.msg);
+					        }
+				      	}
+				    })
+				});
+				
+				//认证第二步
+				mui(document).on('tap', '.js-sure', function() {
+					var num = step.tel,
+					code = document.querySelector('input[name=code]'),
+					token=plus.storage.getItem('token');
+					if(!code.value){
+						mui.toast('请输入验证码！')
+						return false;
+					}
+					app.ajax({
+					    data: {
+					        method: 'api.module.mutil.seller.auth_shop_two',
+					        token:token,
+					        phone_number: num,
+					    },
+				      	type: 'post',
+				      	success: function(data){
+					        if(data.code == 200){
+					        	mui.openWindow({
+					        		url: 'review.html',
+									id: 'review.html',
+									createNew:false,
+									show: {
+										autoShow: false
+									},
+									waiting: {
+							  			autoShow: true
+							  		}
+					        	})
+					        }
+				      	}
+				    })
+				});
+				
+			}
+			mui.plusReady(function(){
+				//显示窗口
+				showCurrentWebview('pop-in');
+				var token=plus.storage.getItem('token');
+				if(token){
+					step.loadData(token);
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,450 @@
+/*
+ * @description: 预设css常用值，用于页面快速布局
+ * @author: haidao
+ * @update: haidao (2016-11-16 17:36)
+ */
+html { line-height: initial; }
+body { color: #333; font-size: 12px; font-size: .28rem; line-height: 1; background-color: #eee; }
+a { display: block; color: #333; }
+
+/* margin */
+.mt-0 { margin-top: 0; }
+.mr-0 { margin-right: 0; }
+.mb-0 { margin-bottom: 0; }
+.ml-0 { margin-left: 0; }
+
+.mg-5 { margin: .1rem; }
+.mg-10 { margin: .2rem; }
+.mg-15 { margin: .3rem; }
+.mg-20 { margin: .4rem; }
+.mg-25 { margin: .5rem; }
+.mg-30 { margin: .6rem; }
+.mg-40 { margin: .8rem; }
+.mg-50 { margin: 1rem; }
+
+.mt-5 { margin-top: .1rem; }
+.mt-10 { margin-top: .2rem; }
+.mt-15 { margin-top: .3rem; }
+.mt-20 { margin-top: .4rem; }
+.mt-25 { margin-top: .5rem; }
+.mt-30 { margin-top: .6rem; }
+.mt-40 { margin-top: .8rem; }
+.mt-50 { margin-top: 1rem; }
+ 
+.mb-5 { margin-bottom: .1rem; }
+.mb-10 { margin-bottom: .2rem; }
+.mb-15 { margin-bottom: .3rem; }
+.mb-20 { margin-bottom: .4rem; }
+.mb-25 { margin-bottom: .5rem; }
+.mb-30 { margin-bottom: .6rem; }
+.mb-40 { margin-bottom: .8rem; }
+.mb-50 { margin-bottom: 1rem; }
+ 
+.ml-5 { margin-left: .1rem; }
+.ml-10 { margin-left: .2rem; }
+.ml-15 { margin-left: .3rem; }
+.ml-20 { margin-left: .4rem; }
+.ml-25 { margin-left: .5rem; }
+.ml-30 { margin-left: .6rem; }
+.ml-40 { margin-left: .8rem; }
+.ml-50 { margin-left: 1rem; }
+ 
+.mr-5 { margin-right: .1rem; }
+.mr-10 { margin-right: .2rem; }
+.mr-15 { margin-right: .3rem; }
+.mr-20 { margin-right: .4rem; }
+.mr-25 { margin-right: .5rem; }
+.mr-30 { margin-right: .6rem; }
+.mr-40 { margin-right: .8rem; }
+.mr-50 { margin-right: 1rem; }
+
+/* padding */
+.pt-0 { padding-top: 0; }
+.pr-0 { padding-right: 0; }
+.pb-0 { padding-bottom: 0; }
+.pl-0 { padding-left: 0; }
+
+.pd-5 { padding: .1rem; }
+.pd-10 { padding: .2rem; }
+.pd-15 { padding: .3rem; }
+.pd-20 { padding: .4rem; }
+.pd-25 { padding: .5rem; }
+.pd-30 { padding: .6rem; }
+
+.pt-5 { padding-top: .1rem; }
+.pt-10 { padding-top: .2rem; }
+.pt-15 { padding-top: .3rem; }
+.pt-20 { padding-top: .4rem; }
+.pt-25 { padding-top: .5rem; }
+.pt-30 { padding-top: .6rem; }
+
+.pr-5 { padding-right: .1rem; }
+.pr-10 { padding-right: .2rem; }
+.pr-15 { padding-right: .3rem; }
+.pr-20 { padding-right: .4rem; }
+.pr-25 { padding-right: .5rem; }
+.pr-30 { padding-right: .6rem; }
+
+.pb-5 { padding-bottom: .1rem; }
+.pb-10 { padding-bottom: .2rem; }
+.pb-15 { padding-bottom: .3rem; }
+.pb-20 { padding-bottom: .4rem; }
+.pb-25 { padding-bottom: .5rem; }
+.pb-30 { padding-bottom: .6rem; }
+
+.pl-5 { padding-left: .1rem; }
+.pl-10 { padding-left: .2rem; }
+.pl-15 { padding-left: .3rem; }
+.pl-20 { padding-left: .4rem; }
+.pl-25 { padding-left: .5rem; }
+.pl-30 { padding-left: .6rem; }
+
+/* border */
+.bd-t { border-top: 1px solid #e1e1e1; }
+.bd-r { border-right: 1px solid #e1e1e1; }
+.bd-b { border-bottom: 1px solid #e1e1e1; }
+.bd-l { border-left: 1px solid #e1e1e1; }
+/*width*/
+.bd-2 { border-width: 2px; }
+/*color*/
+.bd-black { border-color: #000; }
+.bd-main { border-color: #f5827b; }
+.bd-sub { border-color: #f7675e; }
+.bd-dot { border-color: #ed5353; }
+
+/* text color */
+.text-main { color: #f5827b; }
+.text-sub { color: #f7675e; }
+.text-dot { color: #ed5353; }
+.text-green { color: #35c623; }
+.text-hoar { color: #aaa; }
+.text-lightgrey { color: #999; }
+.text-gray { color: #666; }
+.text-dark { color: #333; }
+.text-black { color: #000; }
+
+/* line height */
+.lh-1 { line-height: 1; }
+.lh-16 { line-height: .32rem; }
+.lh-18 { line-height: .36rem; }
+.lh-20 { line-height: .4rem; }
+.lh-22 { line-height: .44rem; }
+.lh-24 { line-height: .48rem; }
+.lh-28 { line-height: .56rem; }
+.lh-32 { line-height: .64rem; }
+
+/* font size */
+.f-8 { font-size: .18rem; }
+.f-10 { font-size: .22rem; }
+.f-12 { font-size: .24rem; }
+.f-14 { font-size: .28rem; }
+.f-16 { font-size: .32rem; }
+.f-18 { font-size: .36rem; }
+.f-20 { font-size: .4rem; }
+.f-22 { font-size: .44rem; }
+.f-24 { font-size: .48rem; }
+.f-28 { font-size: .56rem; }
+.f-32 { font-size: .64rem; }
+
+/* font icon */
+@font-face {
+  font-family: 'vk';
+  src: url('../fonts/vk.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+.vk-icon, [class^="vk-icon-"], [class*=" vk-icon-"] {
+	display: inline-block;
+    font-family: 'vk';
+    font-size: .4rem;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+	text-decoration: none;
+	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+}
+
+.vk-icon-menuclass:before {
+  content: "\e900";
+}
+.vk-icon-phone:before {
+  content: "\e901";
+}
+.vk-icon-human:before {
+  content: "\e902";
+}
+.vk-icon-doubt:before {
+  content: "\e903";
+}
+.vk-icon-facebook:before {
+  content: "\e904";
+}
+.vk-icon-google:before {
+  content: "\e905";
+}
+.vk-icon-twitter:before {
+  content: "\e906";
+}
+.vk-icon-zalo:before {
+  content: "\e907";
+}
+.vk-icon-payment:before {
+  content: "\e908";
+}
+.vk-icon-deliver:before {
+  content: "\e909";
+}
+.vk-icon-receipt:before {
+  content: "\e90a";
+}
+.vk-icon-evaluate:before {
+  content: "\e90b";
+}
+.vk-icon-service:before {
+  content: "\e90c";
+}
+.vk-icon-coupon:before {
+  content: "\e90d";
+}
+.vk-icon-footprint:before {
+  content: "\e90e";
+}
+.vk-icon-coordinate:before {
+  content: "\e90f";
+}
+.vk-icon-seat:before {
+  content: "\e910";
+}
+.vk-icon-set:before {
+  content: "\e911";
+}
+.vk-icon-order:before {
+  content: "\e912";
+}
+.vk-icon-order-s:before {
+  content: "\e913";
+}
+.vk-icon-goods:before {
+  content: "\e914";
+}
+.vk-icon-goods-s:before {
+  content: "\e915";
+}
+.vk-icon-shop:before {
+  content: "\e916";
+}
+.vk-icon-shop-s:before {
+  content: "\e917";
+}
+.vk-icon-send:before {
+  content: "\e918";
+}
+.vk-icon-settlement:before {
+  content: "\e919";
+}
+.vk-icon-close:before {
+  content: "\e91a";
+}
+.vk-icon-plus:before {
+  content: "\e91b";
+}
+.vk-icon-back:before {
+  content: "\e91c";
+}
+.vk-icon-arrow:before {
+  content: "\e91d";
+}
+.vk-icon-withdraw:before {
+  content: "\e91e";
+}
+.vk-icon-password:before {
+  content: "\e91f";
+}
+.vk-icon-coupon-m:before {
+  content: "\e920";
+}
+.vk-icon-count:before {
+  content: "\e921";
+}
+.vk-icon-remove-s:before {
+  content: "\e922";
+}
+.vk-icon-remove:before {
+  content: "\e923";
+}
+.vk-icon-add:before {
+  content: "\e924";
+}
+.vk-icon-check:before {
+  content: "\e925";
+}
+.vk-icon-checked:before {
+  content: "\e926";
+}
+.vk-icon-checked-s:before {
+  content: "\e927";
+}
+.vk-icon-radio:before {
+  content: "\e928";
+}
+.vk-icon-radiochecked:before {
+  content: "\e929";
+}
+.vk-icon-checksquare:before {
+  content: "\e92a";
+}
+.vk-icon-keyboard:before {
+  content: "\e92b";
+}
+.vk-icon-backspace:before {
+  content: "\e92c";
+}
+.vk-icon-realname:before {
+  content: "\e92d";
+}
+.vk-icon-realname-2:before {
+  content: "\e92e";
+}
+.vk-icon-search-2:before {
+  content: "\e92f";
+}
+.vk-icon-search:before {
+  content: "\e930";
+}
+.vk-icon-arrow-up:before {
+  content: "\e931";
+}
+.vk-icon-arrow-down:before {
+  content: "\e932";
+}
+.vk-icon-filter:before {
+  content: "\e933";
+}
+.vk-icon-ellipsis:before {
+  content: "\e934";
+}
+.vk-icon-more:before {
+  content: "\e935";
+}
+.vk-icon-home:before {
+  content: "\e936";
+}
+.vk-icon-home-s:before {
+  content: "\e937";
+}
+.vk-icon-classify:before {
+  content: "\e938";
+}
+.vk-icon-classify-s:before {
+  content: "\e939";
+}
+.vk-icon-mall:before {
+  content: "\e93a";
+}
+.vk-icon-cart:before {
+  content: "\e93b";
+}
+.vk-icon-cart-s:before {
+  content: "\e93c";
+}
+.vk-icon-my:before {
+  content: "\e93d";
+}
+.vk-icon-my-s:before {
+  content: "\e93e";
+}
+.vk-icon-scan:before {
+  content: "\e93f";
+}
+.vk-icon-message:before {
+  content: "\e940";
+}
+.vk-icon-message-s:before {
+  content: "\e941";
+}
+.vk-icon-news-s:before {
+  content: "\e942";
+}
+.vk-icon-news:before {
+  content: "\e943";
+}
+.vk-icon-delete:before {
+  content: "\e944";
+}
+.vk-icon-delete-2:before {
+  content: "\e945";
+}
+.vk-icon-ecode:before {
+  content: "\e946";
+}
+.vk-icon-recharge:before {
+  content: "\e947";
+}
+.vk-icon-edit:before {
+  content: "\e948";
+}
+.vk-icon-camera:before {
+  content: "\e949";
+}
+.vk-icon-spec:before {
+  content: "\e94a";
+}
+.vk-icon-tags:before {
+  content: "\e94b";
+}
+.vk-icon-box:before {
+  content: "\e94c";
+}
+.vk-icon-good:before {
+  content: "\e94d";
+}
+.vk-icon-profit-s:before {
+  content: "\e94e";
+}
+.vk-icon-profit:before {
+  content: "\e94f";
+}
+.vk-icon-trade-s:before {
+  content: "\e950";
+}
+.vk-icon-trade:before {
+  content: "\e951";
+}
+.vk-icon-user-s:before {
+  content: "\e952";
+}
+.vk-icon-user:before {
+  content: "\e953";
+}
+.vk-icon-share:before {
+  content: "\e954";
+}
+.vk-icon-customer:before {
+  content: "\e955";
+}
+.vk-icon-collect:before {
+  content: "\e956";
+}
+.vk-icon-collect-s:before {
+  content: "\e957";
+}
+.vk-icon-notice:before {
+  content: "\e958";
+}
+.vk-icon-contacts:before {
+  content: "\e959";
+}
+.vk-icon-contacts-s:before {
+  content: "\e95a";
+}
+.vk-icon-addfollow:before {
+  content: "\e95b";
+}
+.vk-icon-promise:before {
+  content: "\e95c";
+}
+.vk-icon-transport:before {
+  content: "\e95d";
+}
+

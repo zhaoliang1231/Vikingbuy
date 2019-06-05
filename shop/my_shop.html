@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>VikingBuy</title>
+    <link rel="stylesheet" href="../css/mui.min.css"/>
+    <link rel="stylesheet" href="../css/vk-ui.css"/>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/mui.min.js"></script>
+    <script type="text/javascript" src="../js/vk.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="vk-icon vk-icon-back mui-action-back nav-left"></a>
+		<h1 class="mui-title">我的店铺</h1>
+		<a class="nav-right nav-ft">预览</a>
+	</header>
+	<div class="mui-content m-personal-info">
+		<ul class="mui-table-view mt-10">
+			<li class="mui-table-view-cell js-pop-show sex">
+				<a class="mui-navigate-right avatar-box">
+					<span>店铺头像</span>
+					<small>
+						<div class="vertical-box avatar">
+							<img id="avatar" src="../images/test/shop_logo.jpg">
+						</div>
+					</small>
+				</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right" data-href="shop_nickname.html" data-vid="shop-shop_nickname" data-value="海盗云商">
+					<span>店铺名称</span>
+					<small id="name">海盗云商</small>
+				</a>
+			</li>
+			<li class="mui-table-view-cell" data-href="shop_type.html" data-vid="shop_type">
+				<a class="mui-navigate-right">
+					<span>店铺类型</span>
+					<small>餐饮类</small>
+				</a>
+			</li>
+		</ul>
+		<ul class="mui-table-view mt-10">
+			<li class="mui-table-view-cell" data-href="certify/not_certified.html" data-vid="not_certified">
+				<a class="mui-navigate-right">
+					<span>店铺认证</span>
+					<small>未认证</small>
+				</a>
+			</li>
+			<li class="mui-table-view-cell" data-href="offline_store.html" data-vid="offline_store">
+				<a class="mui-navigate-right" href="offline_store.html">
+					<span>线下门店</span>
+					<small>编辑线下门店信息</small>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="ui-popup m-info-pop js-popup mui-hidden">
+	</div>
+	<div class="ui-popup-wrap m-info-pop-wrap js-pop-wrap mui-hidden phone">
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell js-popup getImage">
+				<span>拍照</span>
+			</li>
+			<li class="mui-table-view-cell js-popup galleryImg">
+				<span>选择图片</span>
+			</li>
+		</ul>
+	</div>
+	
+    <script type="text/javascript" charset="utf-8">
+	    mui.plusReady(function(){
+			//显示窗口
+			showCurrentWebview('pop-in');
+			var token=plus.storage.getItem('token');
+//			app.ajax({
+//				data: {
+//					method: 'api.module.mutil.seller.my_shop',
+//					token:token
+//				},
+//				type: 'get',
+//				success: function(data) {
+//					if(data.code == 200) {
+//						console.log(JSON.stringify(data));
+//					}
+//				}
+//			});
+		shop.token=token;
+		var self = plus.webview.currentWebview();
+		var txt = document.getElementById('name');
+		txt.innerHTML=self.name;
+			
+      	});
+      	
+      	var shop = {
+      		token:'',
+      		/*上传头像*/
+			uploadAvatar: function(src){
+				app.ajax({
+					data: {
+						method: 'api.module.mutil.seller.modify_header',
+						token: shop.token,
+						header_img: src,
+					},
+					type: 'post',
+					success: function(data) {
+						if(data.code == 200 && data.result){
+							mui.toast('头像修改成功');
+						}
+					}
+				})
+			}
+      	}
+      	
+		window.onload=function(){
+			//打开相册
+			mui(document).on('tap', '.galleryImg', function() {
+				app.compressImage({
+					photoUpload: false,
+					callback: function(d){
+						app.imageUpload(d.target,function(ret){
+							var fileUrl=d.target;
+							document.getElementById('avatar').setAttribute('src',fileUrl);
+							shop.uploadAvatar(fileUrl);
+						})
+					}
+				});
+				mui('.ui-popup').addClass('mui-hidden');
+				mui('.ui-popup-wrap').addClass('mui-hidden');
+			});
+			//打开照相机
+			mui(document).on('tap', '.getImage', function() {
+				app.compressImage({
+					photoUpload: true,
+					callback: function(d){
+						app.imageUpload(d.target,function(ret){
+							var fileUrl=d.target;
+							document.getElementById('avatar').setAttribute('src',fileUrl);
+							shop.uploadAvatar(fileUrl);
+						})
+					}
+				});
+				mui('.ui-popup').addClass('mui-hidden');
+				mui('.ui-popup-wrap').addClass('mui-hidden');
+			});
+			
+			mui('.js-popup').each(function(){
+				this.addEventListener('click',function(){
+					setTimeout(function(){
+						mui('.ui-popup').addClass('mui-hidden');
+						mui('.ui-popup-wrap').addClass('mui-hidden');
+					},100)
+				})
+			})
+			mui(".js-pop-show").each(function(){
+				this.addEventListener('click',function(){
+					mui('.ui-popup').removeClass('mui-hidden');
+					mui('.ui-popup-wrap.phone').removeClass('mui-hidden');
+					
+				})
+			})
+			
+		}
+    </script>
+</body>
+</html>

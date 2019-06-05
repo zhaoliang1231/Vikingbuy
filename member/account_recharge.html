@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>VikingBuy</title>
+    <link rel="stylesheet" href="../css/mui.min.css"/>
+    <link rel="stylesheet" href="../css/vk-ui.css"/>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/mui.min.js"></script>
+    <script type="text/javascript" src="../js/vk.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="vk-icon vk-icon-back mui-action-back nav-left"></a>
+		<h1 class="mui-title">账户充值</h1>
+	</header>
+	<div class="mui-content">
+		<ul class="mui-table-view mt-10">
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right">
+					<span>账户充值</span>
+					<input class="f-12 ml-10" type="number" id="money" placeholder="请输入充值金额" />
+				</a>
+			</li>
+		</ul>
+		<div class="f-10 pt-10 pb-10 pl-15 mt-5">请选择充值方式</div>
+		<ul class="mui-table-view m-recharge-pay m-radio-transp mui-radio mui-solid-check" id="pays">
+			
+		</ul>
+		<div class="ml-15 mr-15 mt-30">
+			<a class="mui-btn mui-btn-primary bd-sml" id="gopay">确认充值</a>
+		</div>
+		
+	</div>
+    <script type="text/javascript" charset="utf-8">
+      	window.onload=function(){
+      	mui.plusReady(function(){
+      		showCurrentWebview('pop-in')
+      	})
+      	app.ajax({
+            data : {
+                method : 'api.module.pay.pay.payments',
+            },
+            type: 'get',
+            async: false,//同异步
+            success: function(data) {
+            	if(data.code==200){
+            		var html = '';
+            		mui.each(data.result, function(i,item) {
+            			var pay_code = '';
+            			if(item.pay_code == 'alipay_app'){
+            				pay_code = 'alipay';
+            			}else if(item.pay_code == 'wechat_app'){
+            				pay_code = 'weixin';
+            			}
+	            		
+	            		html += '<li class="mui-table-view-cell">'
+							+	'<label for="pay-way1">'
+							+	'<span class="mui-pull-left mr-10 pay-icon">'
+							+	'<img src="../images/ico_'+ pay_code +'.png" />'
+							+	'</span>'
+							+ 	'<span>'+ pay_code +'</span>'
+							+	'<input type="radio" id="'+ pay_code +'" name="recharge" data-value="'+ item.pay_code +'" value="'+ pay_code +'" checked="checked"/>'
+							+	'</label>'
+							+	'</li>';
+	            	});
+	            	document.getElementById("pays").innerHTML = html;
+	            }
+            },
+            error: function(xhr, type, errorThrown) {
+              
+            }
+        });
+        var pays = {};
+		var channel=null;
+       //去支付
+        mui(document).on('tap', "#gopay", function(){
+        	var $money = document.getElementById("money").value;
+        	if(!$money && $money <= 0){
+        		mui.toast("充值金额需要大于0");
+        		return false;
+        	}
+        	var code = $('input:radio[name="recharge"]:checked').val();
+        	var pay_code = $('input:radio[name="recharge"]:checked').data('value');
+        	plus.payment.getChannels(function(channels){
+        		for(var i in channels){
+        			channel=channels[i];
+        			pays[channel.id]=channel;
+        		}
+			},function(e){
+				outLine("获取支付通道失败："+e.message);
+			});
+        	//请求
+        	app.ajax({
+            data : {
+                method : 'api.module.member.finance.recharge',
+                pay_code : pay_code,
+                money : $money,
+                mid : 1,
+            },
+            type: 'post',
+            success: function(data) {
+            	plus.payment.request(pays[code],data.result.gateway_url,function(result){
+            		mui.openWindow({
+						url: 'deal_record.html',
+						id: 'deal_record.html',
+						createNew:false,
+						show: {
+							autoShow: false
+						},
+						waiting: {
+				  			autoShow: false
+				  		}
+					});
+					plus.webview.currentWebview().hide();
+            		mui.later(function(){
+            			plus.webview.currentWebview().close();
+            		}, 1000)
+				},function(e){
+					plus.nativeUI.alert("请联系管理员",null,"支付失败："+e.code);
+				});
+            },
+            error: function(xhr, type, errorThrown) {
+            	mui.toast("TOT数据加载出错了！")
+            }
+        })
+     })
+    }
+    </script>
+</body>
+</html>

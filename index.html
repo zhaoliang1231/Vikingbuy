@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>VikingBuy</title>
+    <link rel="stylesheet" href="css/mui.min.css"/>
+    <link rel="stylesheet" href="css/vk-ui.css"/>
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="text/javascript" src="js/public.js"></script>
+    <script type="text/javascript" src="js/mui.min.js"></script>
+</head>
+<body>
+	<!--search start-->
+	<header class="mui-bar mui-bar-nav m-search m-classify-search">
+		<div class="mui-input-row">
+	        <input type="search" class="mui-input-clear" placeholder="输入关键字进行搜索" />
+	        <span class="vk-icon vk-icon-search"></span>
+	    </div>
+		<a class="opt-item ml-10">
+			<div class="vk-icon-scan"></div>
+			<div class="f-8">扫一扫</div>
+		</a>
+		<a class="opt-item ml-10">
+			<div class="vk-icon-message"></div>
+			<div class="f-8">消息</div>
+			<i class="badge-new"></i>
+		</a>
+	</header>
+	
+	<!--nav start-->
+	<nav class="mui-bar mui-bar-tab foot-nav">
+		<div class="mui-tab-item current">
+			<span class="vk-icon vk-icon-home-s"></span>
+			<small>首页</small>
+		</div>
+		<div href="goods/classify.html" class="mui-tab-item">
+			<span class="vk-icon vk-icon-classify"></span>
+			<small>分类</small>
+		</div>
+		<div id="shopHelp" class="mui-tab-item">
+			<div class="main-item"><span class="vk-icon vk-icon-mall"></span></div>
+			<small>店铺</small>
+		</div>
+		<div href="order/cart.html" class="mui-tab-item">
+			<span class="vk-icon vk-icon-cart"></span>
+			<small>购物车</small>
+		</div>
+		<div href="member/index.html" class="mui-tab-item">
+			<span class="vk-icon vk-icon-my"></span>
+			<small>我的</small>
+		</div>
+	</nav>
+	<div class="mui-content">
+		<!--banner start-->
+		<div class="mui-slider m-slider" id="slider"></div>
+		<!--grid start-->
+		<ul class="m-image-nav pt-10 bg-white mui-clearfix">
+			<li class="nav-item">
+				<div class="icon"><img src="images/ico_index_hot.png" /></div>
+				<div>热卖推荐</div>
+			</li>
+			<li class="nav-item">
+				<div class="icon"><img src="images/ico_index_new.png" /></div>
+				<div>今日上新</div>
+			</li>
+			<li class="nav-item">
+				<div class="icon"><img src="images/ico_index_limit.png" /></div>
+				<div>限时抢购</div>
+			</li>
+			<li class="nav-item">
+				<div class="icon"><img src="images/ico_index_sign.png" /></div>
+				<div>签到</div>
+			</li>
+			<li class="nav-item">
+				<div class="icon"><img src="images/ico_index_shop.png" /></div>
+				<div>店铺精选</div>
+			</li>
+			<li class="nav-item">
+				<div class="icon"><img src="images/ico_index_coupon.png" /></div>
+				<div>领券中心</div>
+			</li>
+			<li class="nav-item">
+				<div class="icon"><img src="images/ico_index_luck.png" /></div>
+				<div>抽奖</div>
+			</li>
+			<li class="nav-item">
+				<div class="icon"><img src="images/ico_index_classify.png" /></div>
+				<div>分类</div>
+			</li>
+		</ul>
+		<!--公告-->
+		<div class="m-notice pd-5 bd-t">
+			<div class="notice-view mui-clearfix">
+				<div class="icon mr-10"></div>
+				<ul class="mui-pull-left">
+					<li class="mui-clearfix">
+						<div class="mui-pull-left mui-btn mr-10">推荐</div>
+						<p class="text mui-ellipsis mui-pull-left">你适合直发还是卷发，对照这些因素就知道</p>
+					</li>
+				</ul>
+				<a href="javascript:;" class="mui-pull-right more">更多</a>
+			</div>
+		</div>
+		<!--限时抢购-->
+		<div class="m-limit bg-white pb-10">
+			<div class="limit mui-clearfix">
+				<div class="img mui-pull-left"><img src="images/ico_index_soon.png"/></div>
+				<div class="limit-time js-time mui-clearfix mui-pull-right">
+					<span class="text-main f-12 mr-10">时间仅剩</span>
+					<span class="item js-h">00</span>
+					<span>:</span>
+					<span class="item js-m">00</span>
+					<span>:</span>
+					<span class="item js-s">00</span>
+				</div>
+			</div>
+			<div id="forthcoming"></div>
+		</div>
+		<!--广告位-->
+		<div class="mt-10 m-fullwide-ad"><img src="images/test/pic_1.jpg"/></div>
+		<!--必买-->
+		<div class="m-fullwide-ad"><img src="images/ico_buy_bg.jpg"/></div>
+		<ul class="goods-base-lists m-index-list mui-clearfix">
+			<li class="list wide-half">
+				<div class="text">
+					<div class="title">全球时尚</div>
+					<p class="mui-ellipsis name">大牌精致时尚</p>
+				</div>
+				<div class="vertical-box">
+					<img src="images/test/goods_3.png" />
+				</div>
+			</li>
+			<li class="list wide-half">
+				<div class="text">
+					<div class="title">全球时尚</div>
+					<p class="mui-ellipsis name">大牌精致时尚</p>
+				</div>
+				<div class="vertical-box">
+					<img src="images/test/goods_3.png" />
+				</div>
+			</li>
+			<li class="list">
+				<div class="text">
+					<div class="title">全球时尚</div>
+					<p class="mui-ellipsis name">大牌精致时尚</p>
+				</div>
+				<div class="vertical-box">
+					<img src="images/test/goods_3.png" />
+				</div>
+			</li>
+			<li class="list">
+				<div class="text">
+					<div class="title">全球时尚</div>
+					<p class="mui-ellipsis name">大牌精致时尚</p>
+				</div>
+				<div class="vertical-box">
+					<img src="images/test/goods_3.png" />
+				</div>
+			</li>
+			<li class="list">
+				<div class="text">
+					<div class="title">全球时尚</div>
+					<p class="mui-ellipsis name">大牌精致时尚</p>
+				</div>
+				<div class="vertical-box">
+					<img src="images/test/goods_3.png" />
+				</div>
+			</li>
+			<li class="list">
+				<div class="text">
+					<div class="title">全球时尚</div>
+					<p class="mui-ellipsis name">大牌精致时尚</p>
+				</div>
+				<div class="vertical-box">
+					<img src="images/test/goods_3.png" />
+				</div>
+			</li>
+		</ul>
+		<!--特色购-->
+		<div class="m-fullwide-ad"><img src="images/ico_feature_bg.jpg"/></div>
+		<ul class="goods-base-lists m-index-list mui-clearfix">
+			<li class="list">
+				<div class="text">
+					<div class="title">全球时尚</div>
+					<p class="mui-ellipsis name">大牌精致时尚</p>
+				</div>
+				<div class="vertical-box">
+					<img src="images/test/goods_3.png" />
+				</div>
+			</li>
+			<li class="list">
+				<div class="text">
+					<div class="title">全球时尚</div>
+					<p class="mui-ellipsis name">大牌精致时尚</p>
+				</div>
+				<div class="vertical-box">
+					<img src="images/test/goods_3.png" />
+				</div>
+			</li>
+			<li class="list">
+				<div class="text">
+					<div class="title">全球时尚</div>
+					<p class="mui-ellipsis name">大牌精致时尚</p>
+				</div>
+				<div class="vertical-box">
+					<img src="images/test/goods_3.png" />
+				</div>
+			</li>
+			<li class="list">
+				<div class="text">
+					<div class="title">全球时尚</div>
+					<p class="mui-ellipsis name">大牌精致时尚</p>
+				</div>
+				<div class="vertical-box">
+					<img src="images/test/goods_3.png" />
+				</div>
+			</li>
+			<li class="list wide">
+				<div class="text">
+					<div class="title">全球时尚</div>
+					<p class="mui-ellipsis name">大牌精致时尚</p>
+				</div>
+				<div class="img mui-clearfix">
+					<div class="vertical-box">
+						<img src="images/test/goods_3.png" />
+					</div>
+					<div class="vertical-box">
+						<img src="images/test/goods_3.png" />
+					</div>
+				</div>
+			</li>
+			<li class="list wide">
+				<div class="text">
+					<div class="title">全球时尚</div>
+					<p class="mui-ellipsis name">大牌精致时尚</p>
+				</div>
+				<div class="img mui-clearfix">
+					<div class="vertical-box">
+						<img src="images/test/goods_3.png" />
+					</div>
+					<div class="vertical-box">
+						<img src="images/test/goods_3.png" />
+					</div>
+				</div>
+			</li>
+		</ul>
+		<!--广告位-->
+		<div class="mt-10 m-fullwide-ad"><img src="images/test/pic_2.jpg"/></div>
+		<!--猜你喜欢-->
+		<div class="m-fullwide-ad"><img src="images/ico_like_bg.jpg"/></div>
+		<div id="guess"></div>
+	</div>
+	<script type="text/javascript" src="js/config.js" ></script>
+	<script type="text/javascript" src="js/app.js" ></script>
+	<script type="text/javascript" src="js/vk.js" ></script>
+	<script type="text/javascript" src="js/mui.lazyload.js" ></script>
+	<script type="text/javascript" src="js/mui.lazyload.img.js" ></script>
+	<script type="text/javascript" src="js/nav.js"></script>
+	<script type="text/javascript" src="js/template.js"></script>
+	<script type="text/html" id="forthcomingTemp">
+		<div class="mui-scroll-wrapper limit-list mt-10 mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+			<ul class="mui-scroll mui-text-center mui-clearfix">
+			{{each skus as value}}
+		        <li data-href="goods/detail.html" data-id="{{value.sku_id}}" data-value="{{value.sku_id}}">
+		        	<div class="square-box">
+						<div class="vertical-box">
+							<img src="images/loadlazy.gif" data-lazyload="{{value.thumb}}" />
+							<div class="discount">{{(value.shop_price / value.market_price * 10).toFixed(1)}}折</div>
+						</div>
+					</div>
+					<div class="mt-5 text-main mui-text-center f-16">{{value.shop_price}} ₫</div>
+		        </li>
+		    {{/each}}
+		    </ul>
+	    </div>
+	</script>
+	<script type="text/html" id="guessTemp">
+		<ul class="goods-base-lists m-goods-lists mui-clearfix">
+		{{each guess as value index}}
+			<li class="list" id="{{index}}">
+				<div class="item" data-href="goods/detail.html" data-id="{{value.sku_id}}" data-value="{{value.sku_id}}">
+					<div class="square-box">
+						<div class="vertical-box"><img src="images/loadlazy.gif" data-lazyload="{{value.thumb}}" /></div>
+					</div>
+					<div class="text pd-10">
+						<div class="mui-ellipsis mb-10 f-14">{{value.sku_name}}&nbsp;</div>
+						<p class="f-16 text-main">{{value.shop_price}} ₫</p>
+						<div class="mt-10 f-10 text-gray">销量{{value.sales_num}}件<span class="ml-20">{{value.comment_num}}条评价</span></div>
+					</div>
+				</div>
+			</li>
+		{{/each}}
+		</ul>
+	</script>
+	<script>
+		var preloads = ['goods/classify.html', 'order/cart.html', 'member/index.html'];
+		var mainView, currentView;
+		window.onload = function(){
+			
+			//焦点图创建
+			function createSliderHtml(value){
+				var html = '';
+				var ind = '';
+				for(var i = 0; i < value.length; i++) {
+					//焦点
+					ind += '<div class="mui-indicator'+(i==0?' mui-active':'')+'"></div>';
+					//复制最后一张
+					if(i == 0){
+						html += '<div class="mui-slider-item mui-slider-item-duplicate"><a><img src="images/banner_lazyload.gif" data-lazyload="'+ value[value.length - 1].thumb +'" /></a></div>';
+					}
+					//正常循环
+					html += '<div class="mui-slider-item" data-href="'+ value[i].url +'"><a><img src="images/banner_lazyload.gif" data-lazyload="'+ value[i].thumb +'" /></a></div>';
+					//复制第一张
+					if(i == value.length - 1){
+						html += '<div class="mui-slider-item mui-slider-item-duplicate"><a><img src="images/banner_lazyload.gif" data-lazyload="'+ value[0].thumb +'" /></a></div>';
+					}
+				}
+				html = '<div class="mui-slider-group mui-slider-loop">' + html + '</div>';
+				html += '<div class="mui-slider-indicator">'+ ind + '</div>';
+				return html;
+			}
+			
+			
+			
+			
+			//倒计时
+			/*var parent = document.querySelector(".js-time"),
+			time = parent.getAttribute("data-time");
+			mui(".js-time").countDown({timer:time});*/
+			
+			
+			
+			app.ajax({
+				data: {
+					method: 'api.module.mutil.store.index'
+				},
+				success: function(data){
+					
+					//console.log(JSON.stringify(data))
+					if(!data.result) return false;
+					
+					//加载焦点图
+					if(data.result.focus){
+						document.getElementById("slider").innerHTML = createSliderHtml(data.result.focus);
+						//轮播图
+						mui('#slider').slider();
+					}
+					
+					//即将到来
+					if(data.result.promotion){
+						mui(".js-time").countDown({timer: data.result.promotion.end_time - data.result.promotion.start_time});
+						if(data.result.promotion.skus){
+							document.getElementById("forthcoming").innerHTML = template("forthcomingTemp", data.result.promotion);
+							mui('#forthcoming .mui-scroll-wrapper').scroll({
+								scrollY: false, //是否竖向滚动
+								scrollX: true,
+								indicators: false,
+								deceleration: 100
+							});
+						}
+					}
+					
+					//猜你喜欢
+					if(data.result.guess){
+						document.getElementById("guess").innerHTML = template('guessTemp', data.result);
+					}
+					
+					mui(document).imageLazyload();
+				}
+			})
+			
+			mui.plusReady(function(){
+				
+				plus.navigator.setStatusBarBackground("#ffffff");
+				
+				//关闭启动动画
+				//plus.navigator.closeSplashscreen();
+				
+				//只允许竖屏模式 
+				plus.screen.lockOrientation("portrait-primary");
+				
+				//主窗口
+				mainView = plus.webview.currentWebview();
+				
+			});
+		}
+	</script>
+</body>
+</html>
